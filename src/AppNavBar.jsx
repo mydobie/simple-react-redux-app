@@ -8,6 +8,8 @@ import {
   HOME_ROUTE,
   VERSION_ROUTE,
   FEATURE_FLAGS_ROUTE,
+  DINO_ROUTE,
+  SAMPLE_FEATURES_ROUTE,
 } from './AppRouteNames';
 
 import { isProd } from './js/whichEnv';
@@ -20,6 +22,13 @@ const AppNavBar = () => (
           Home
         </NavLink>
       </Nav.Item>
+
+      <Nav.Item>
+        <NavLink activeClassName='active' className='nav-link' to={DINO_ROUTE}>
+          Dino (sample Redux page)
+        </NavLink>
+      </Nav.Item>
+
       {/* // START FEATURE FLAGS */}
       {/* Only show feature flags UI for non production */}
       {!isProd() ? (
@@ -34,6 +43,17 @@ const AppNavBar = () => (
         </Nav.Item>
       ) : null}
       {/* // END FEATURE FLAGS */}
+
+      <Nav.Item>
+        <NavLink
+          activeClassName='active'
+          className='nav-link'
+          to={SAMPLE_FEATURES_ROUTE}
+        >
+          Feature flags in use
+        </NavLink>
+      </Nav.Item>
+
       <Nav.Item>
         <NavLink
           activeClassName='active'

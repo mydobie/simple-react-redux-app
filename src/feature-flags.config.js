@@ -7,7 +7,8 @@ For example:
 
 export const COLORS = 'COLORS';
 */
-
+export const FRUITS = 'FRUITS';
+export const VEGGIES = 'VEGGIES';
 /* ****************** FEATURE FLAG  ARRAY ************** */
 /*
 Add all feature flags in the following format:
@@ -20,4 +21,15 @@ Add all feature flags in the following format:
   ...
 ]
 */
-export const featureFlagArray = [];
+export const featureFlagArray = [
+  {
+    id: FRUITS,
+    inuse: false,
+    description: 'Fruit list',
+  },
+  {
+    id: VEGGIES,
+    inuse: true,
+    description: 'Vegetable list',
+  },
+];

@@ -49,6 +49,7 @@ class App extends React.Component {
     // START FEATURE FLAGS
     // NOTE: featureFlagArray is from feature-flags.config.js file
     const { loadFeatureToRedux } = this.props;
+    // EXAMPLE: Load feature flags to redux store
     loadFeatureToRedux(featureFlagArray);
     //  END FEATURE FLAGS
   }

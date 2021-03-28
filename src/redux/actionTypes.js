@@ -1,12 +1,13 @@
 /*
-Actions ensure that the data going to the reducers are in the proper format
-Each must return an object that has two keys: type and payload
-
-Type: is a global variable that is set in the actionTypes file
-
-Payload: Data to be sent to the reducer that will eventually go to the redux store
-The payload can be a single value, array, or object
+This file just lists actions as variables.
+This ensures that there is consistency across
+the components.
 */
 
-// Example:
-// export const LOADING = 'LOADING';
+// //////////////// SAMPLES //////////////////
+export const DINO_ADD = 'DINO_ADD';
+export const DINO_REMOVE = 'DINO_REMOVE';
+export const DINO_LOADING = 'DINO_LOADING';
+export const DINO_ERROR = 'DINO_ERROR';
+export const DINO_SELECT = 'DINO_SELECT';
+// ///////////////////////////////////////////
