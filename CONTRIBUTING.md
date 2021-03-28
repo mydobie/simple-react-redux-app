@@ -55,7 +55,9 @@ Text matching tests should be avoided.
 Because of the nature of the Node, Jest, React, Redux and Enzyme environment, a very high level of test coverage (85+ lines covered) is expected.
 
 ---
+
 ---
+
 ---
 
 ## Code formatting
@@ -137,10 +139,9 @@ Only application-wide styles should be added to the `src/scss` files
 
 Overriding linting rules should be kept to an absolute minimum. Under normal coding situations there isn't a need to make exceptions to the linting rules. If you find yourself doing this, please reconsider what you are doing. All linting overriding statements should be reviewed and approved by the team after careful review
 
-
 ### Use native Javascript array methods instead of loops
 
-Javascript provides a great assortment of [array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).  These methods should be used instead of brute force loops:
+Javascript provides a great assortment of [array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). These methods should be used instead of brute force loops:
 
 ```
 NOT:
@@ -156,8 +157,8 @@ const myNewArray = myOldArray.map((color) => `The color ${color}`);
 
 ```
 
-
 ### When possible use async/await promises instead of callbacks
+
 While some modules and coding situations require the use of call backs, when possible use async/await or promises when possible.
 
 ```
@@ -174,7 +175,7 @@ const myFunction = (callback) => {
 };
 
 
-YES: 
+YES:
 const myFunction = async () => {
   try{
     return await axios.get('myURL')
@@ -185,4 +186,3 @@ const myFunction = async () => {
 };
 
 ```
-

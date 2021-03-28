@@ -1,8 +1,7 @@
 // Page rendered when url doesn't match route in App.jsx
 
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
-// EXAMPLE: Include an image
+import { Container, Row, Col } from 'react-bootstrap';
 import notFoundImage from '../images/page_not_found.svg';
 
 const FourOhFour = (/* props */) => (

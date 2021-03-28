@@ -25,6 +25,7 @@ In order to keep the project organized, the project has the following structure:
     - `/src/components/SAMPLE.jsx` => Sample component that can be used as a template.
     - `/src/components/SAMPLE_NO_STATE.jsx` => Simple function component that can be used as a template. This are components that do not hold state. If in doubt use the `SAMPLE.jsx` version.
     - `/src/components/SAMPLE_REDUX.jsx` => Sample component connected to the redux store that can be used as a template.
+    - `/src/components/SetAxios.jsx` => File that contains code that is run before and after each ajax call.
 
   - `/src/images` => All static images called by the components
   - `/src/js` => Any helper .js file used by the application
@@ -38,13 +39,16 @@ In order to keep the project organized, the project has the following structure:
     - `/src/scss/index.scss` => List of Bootstrap includes. Disable any scss for Bootstrap features that are not in use
   - `/src/App.jsx` => Contains any items that should be on all "pages" including header and footers
   - `/src/AppNavBar.jsx` => Main navigation bar for the entire application
+  - `/src/AppRouteNames.js` => Lists all the routes so they can imported into both the AppRoutes and AppNavBar files.
   - `/src/AppRoutes.jsx` => Contains the routing for the entire application
   - `/src/index.jsx` => File that inserts React application into the HTML. This normally doesn't need to be modified
 
   - `/src/feature-flags.config.js` => File that contains feature flags and configuration
 
-- `/DOCER_DEV_ENV` => Files to develop inside a docker container.
-  - `/DOCER_DEV_ENV/README.md` => Directions on how to set up and run a docker container for development
+- `/DOCKER_DEV_ENV` => Files to develop inside a docker container.
+  - `/DOCKER_DEV_ENV/README.md` => Directions on how to set up and run a docker container for development
+- `/GETTING_STARTED` => Files on how to get started and set-up a development environment
+
 - `/GETTING_STARTED` => Files on how to get started and set-up a development environment
 
 ---
@@ -122,7 +126,7 @@ The main `README.md` file should be reviewed and updated.
 
 Files and directories that are in all caps and snake case are only to get you started. Normally names for all files and directories that in a React application should be camel case with Components staring with a capital letter. These sample directories can be removed or renamed.
 
-The only exceptions to this rule are the `/README.md`, `LICENSE.md `, `CONTRIBUTING.md`, `CODEOWNERS`
+The only exceptions to this rule are the `README.md`, `LICENSE.md `, `CONTRIBUTING.md`, `CODEOWNERS`
 files. These files should be modified without changing the file name.
 
 ---

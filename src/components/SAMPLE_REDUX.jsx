@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import {  } from 'reactstrap';
+// import {  } from 'react-bootstrap';
 import { connect } from 'react-redux';
 // import { } from '../redux/thunks/MY_THUNK_FILE';
 // import { } from '../redux/actions/MY_ACTIONS_FILE';
@@ -31,7 +31,7 @@ class SAMPLE extends React.Component {
 SAMPLE.propTypes = {};
 SAMPLE.defaultProps = {};
 
-// NOTE: The values from SELECTORS will be part of the pros:
+// NOTE: The values from SELECTORS will be part of the props:
 const mapStateToProps = (state) => ({});
 
 // NOTE: Functions passed from THUNKS and ACTIONS passed to the props
