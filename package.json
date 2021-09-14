@@ -20,6 +20,9 @@
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0"
   },
+  "// devDependencies": [
+    "Sass is pinned to a lower version otherwise it breaks on the bootstrap build"
+  ],
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
@@ -48,35 +51,38 @@
     "lint-staged": "^11.0.0",
     "onchange": "^7.1.0",
     "prettier": "^2.3.2",
-    "react-redux": "^7.2.4",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "redux": "^4.1.0",
     "redux-mock-store": "^1.5.4",
-    "redux-persist": "^6.0.0",
     "sass": "1.37.0",
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",
     "typescript": "^4.3.5",
     "uglify-js": "^3.12.3"
   },
+  "// resolutions": [
+    "Pin a package to a particular version.",
+    "Only use to resolve security advisories",
+    "See https://www.npmjs.com/package/npm-force-resolutions"
+  ],
+  "resolutions": {
+    "glob-parent": "5.1.2"
+  },
   "scripts": {
     "d": "npm i",
     "installDependencies": "npm run d",
     "start": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
     "start:mock": "REACT_APP_USE_MOCKS=true npm run start",
-    "----------------------------------------------------------1": "",
+    "// ----------------------------------------------------------1": "",
     "build": "npm run d && npm run test && npm run npmAudit && npm run build:ci",
     "build:ci": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
     "test": "react-scripts test --coverage --passWithNoTests --testPathIgnorePatterns /helpers --watchAll=false ",
     "test:watch": "react-scripts test ",
     "test:update": "npm run test -- -u",
-    "----------------------------------------------------------2": "",
+    "// ----------------------------------------------------------2": "",
     "lint": "npm run lint:js && npm run prettier:all && npm run lint:scss:all",
     "lint:fix": "npm run prettier:fix:all && npm run lint:js:fix &&  npm run lint:scss:fix:all",
     "lint:watch": "onchange 'src/**/*.*' -- npm run lint:fix",
-    "----------------------------------------------------------3": "",
+    "// ----------------------------------------------------------3": "",
     "lint:js": "tsc --noEmit && esw --ext .js,.jsx,.ts,.tsx --color ",
     "lint:js:fix": "npm run lint:js -- --fix",
     "prettier": "prettier  --ignore-path ./.eslintignore --check",
@@ -86,12 +92,14 @@
     "lint:scss": "stylelint --ignore-path ./.eslintignore ",
     "lint:scss:all": "npm run lint:scss './**/*.+(css|scss)'",
     "lint:scss:fix:all": "npm run lint:scss -- --fix './**/*.+(css|scss)'",
-    "----------------------------------------------------------4": "",
+    "// ----------------------------------------------------------4": "",
     "clean": "rm -rf node_modules && rm package-lock.json && npm run d",
     "checkCoverage": "node ./utils/testCoverage.js",
     "createTar": "node ./utils/createArchive.js",
     "npmAudit": "npm audit -audit-level high",
-    "prepare": "husky install"
+    "// ----------------------------------------------------------5": "",
+    "prepare": "husky install",
+    "preinstall": "npx npm-force-resolutions"
   },
   "prettier": {
     "singleQuote": true,
