@@ -7,9 +7,9 @@ import { Container } from 'react-bootstrap';
 import AppNavBar from './AppNavBar';
 import AppRoutes from './AppRoutes';
 
-// import './scss/index.scss';
+import './scss/index.scss';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/bootstrap/scss/bootstrap.scss';
+// import '../node_modules/bootstrap/scss/bootstrap.scss';
 
 const App = (): ReactElement => {
   const basename = '';
