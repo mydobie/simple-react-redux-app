@@ -1,5 +1,4 @@
-// Add any code you want run before the tests are run
-// Add any items that you want run before running the tests
+// Add any code  or items you want run before the tests are run
 // Do not delete this file
 import React from 'react';
 import { toHaveNoViolations } from 'jest-axe';

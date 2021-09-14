@@ -6,13 +6,15 @@ const DinoListItem = ({
   dinoId,
   checked,
   changeCheckBox,
+  testid,
 }: {
   dinoName: string;
   dinoId: string;
   checked: boolean;
   changeCheckBox: (dinoId: string, isChecked: boolean) => void;
+  testid?: string;
 }): ReactElement => (
-  <li>
+  <li data-testid={testid}>
     {/* EXAMPLE: Checkbox with label */}
     <Form.Check
       onClick={(e) => {

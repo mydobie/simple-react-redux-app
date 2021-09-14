@@ -14,7 +14,7 @@ const Loading = ({
   color?: string;
   children?: ReactElement | string;
 }): ReactElement => (
-  <div style={{ display: 'inline-block' }}>
+  <div style={{ display: 'inline-block' }} data-testid='Loading'>
     <Spinner
       style={size === 'sm' ? undefined : { width: size, height: size }}
       variant={color}

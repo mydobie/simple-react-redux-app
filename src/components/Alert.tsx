@@ -7,13 +7,21 @@ This component takes errors, warnings, or success messages
 import React, { ReactElement } from 'react';
 import { Alert } from 'react-bootstrap';
 
-export type ErrorType = 'danger' | 'warning' | 'success' | 'info' | 'error';
+export type ErrorType =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'light'
+  | 'dark';
 
 const Errors = ({
   errorArray = [],
   children = null,
   title = '',
-  type = 'error',
+  type = 'danger',
   displayAsHTML = false,
 }: {
   errorArray?: string[];
@@ -30,6 +38,8 @@ const Errors = ({
       <li key={index}>{error}</li>
     )
   );
+  // eslint-disable-next-line no-console
+  console.log('Alert type', type);
   return (
     <Alert variant={type}>
       {title !== '' ? <h2 className='alertTitle'>{title}</h2> : null}

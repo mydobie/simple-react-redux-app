@@ -11,7 +11,7 @@ import Version from './pages/Version';
 import FourOhFour from './pages/FourOhFour';
 
 const AppRoutes = (): ReactElement => (
-  <div>
+  <>
     <Switch>
       <Route path={HOME_ROUTE} exact>
         <Home />
@@ -29,7 +29,7 @@ const AppRoutes = (): ReactElement => (
         <FourOhFour />
       </Route>
     </Switch>
-  </div>
+  </>
 );
 
 export default AppRoutes;

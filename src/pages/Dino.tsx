@@ -2,7 +2,7 @@
 
 import React, { ReactElement } from 'react';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -40,54 +40,29 @@ const SampleDinoPage = (): ReactElement => {
     }
   }, [dinos, dispatch]);
 
-  // componentDidMount() {
-  //   const { startLoadingDinos, dinos } = this.props;
-  //   // Only load dinos if the array in the store is empty
-  //   if (dinos.length === 0) {
-  //     startLoadingDinos();
-  //   }
-  // }
-
-  // handleSelectDinoToggle(dinoId, checked) {
-  //   const { onDinoSelect } = this.props;
-  //   return onDinoSelect(dinoId, checked);
-  // }
-
-  // async handleGetRandomDino() {
-  //   const { getRandomDino } = this.props;
-
-  //   // EXAMPLE: Using a value returned from a thunk
-  //   const randomDino = await getRandomDino();
-  //   this.setState({ randomDino });
-  // }
-
   const dinoList = (
     <div>
       <h2>Please select dinosaurs:(stored in Redux)</h2>
 
       <ul>
-        {dinos.map((dino) => {
-          console.log('Dino:', dino);
-          return (
-            <DinoListItem
-              key={dino.id}
-              dinoName={dino.text}
-              dinoId={dino.id}
-              checked={dino.selected}
-              changeCheckBox={(dinoId, checked) =>
-                dispatch(setDinoSelection({ id: dinoId, selected: checked }))
-              }
-            />
-          );
-        })}
+        {dinos.map((dino) => (
+          <DinoListItem
+            testid='dinoListItem'
+            key={dino.id}
+            dinoName={dino.text}
+            dinoId={dino.id}
+            checked={dino.selected}
+            changeCheckBox={(dinoId, checked) =>
+              dispatch(setDinoSelection({ id: dinoId, selected: checked }))
+            }
+          />
+        ))}
       </ul>
     </div>
   );
 
   return (
-    // EXAMPLE: Calling a loading a screen
-
-    <Container>
+    <>
       <Row>
         <Col>
           <h1>Dino Sample Page</h1>
@@ -95,9 +70,9 @@ const SampleDinoPage = (): ReactElement => {
       </Row>
       <Row>
         <Col>
-          {error !== null ? <Errors>{error}</Errors> : null}
+          {!loading && error ? <Errors>{error}</Errors> : null}
           {loading ? <Loading /> : null}
-          {loading === false && error === null ? (
+          {!loading && !error ? (
             <div id='dinoLists'>
               {dinoList}
               <DinoList />
@@ -123,7 +98,7 @@ const SampleDinoPage = (): ReactElement => {
           </p> */}
         </Col>
       </Row>
-    </Container>
+    </>
   );
 };
 

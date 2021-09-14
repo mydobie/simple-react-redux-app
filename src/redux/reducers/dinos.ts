@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable no-param-reassign */
 /*
 Reducers update the redux store.
@@ -18,7 +19,8 @@ export type DinoState = {
   error: string | null;
 };
 // Record the expected initial state structure
-const initialState: DinoState = {
+// exported ONLY for testing purposes - it should not be used in the actual application
+export const initialState: DinoState = {
   data: [],
   loading: false,
   error: null,
@@ -42,6 +44,7 @@ export const loadDinos = createAsyncThunk(
         selected: false,
       }));
     } catch (err) {
+      // @ts-ignore
       return rejectWithValue(err.response.data);
     }
   }
@@ -90,7 +93,7 @@ export const DinosSlice = createSlice({
           state.data.push(dino);
         }
       });
-
+      state.error = null;
       state.loading = false;
     });
 
