@@ -1,92 +1,132 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
 import { Provider } from 'react-redux';
-// import configureStore, { MockStoreEnhanced } from 'redux-mock-store';
+import { store } from '../../redux/store';
 import { axe } from 'jest-axe';
-import { render, screen } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  within,
+} from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import { resetDinoStore } from '../../redux/reducers/dinos';
+import { dinoAPI } from '../../js/axios.config';
 
-import { store } from '../../redux/store';
-
-import mockDinos from '../__fixtures__/dinoipsum';
+import mockDinos from '../../__test_fixtures__/dinoipsum';
 import DinoPage from '../../pages/Dino';
 
-// import DinoListItem from '../../components/DinoListItem';
-// import { setDinoSelectedAction } from '../../redux/actions/dinos';
-// import { loadDinosThunk, loadDinoRandomThunk } from '../../redux/thunks/dinos';
-
-const mock = new MockAdapter(axios);
+let mock: MockAdapter;
 
 describe('Sample Dino Page component tests', () => {
   beforeEach(() => {
-    mock.onAny().reply(200, mockDinos);
+    process.env.REACT_APP_USE_MOCKS = 'false';
+    mock = new MockAdapter(axios);
+    store.dispatch(resetDinoStore());
   });
 
-  test('Component is accessible after loading dinos', async () => {
+  test('Component is accessible when loading dinos', async () => {
+    process.env.REACT_APP_USE_MOCKS = 'true';
+    mock.onGet(dinoAPI.url()).reply(200, mockDinos);
     const { container } = render(
       <Provider store={store}>
         <DinoPage />
       </Provider>
     );
     const results = await axe(container);
-    expect(
-      container.querySelector('[data-testid="Loading"]')
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('Loading')).toBeInTheDocument();
+
     expect(results).toHaveNoViolations();
   });
 
-  // test('Component is accessible while loading', async () => {
-  //   store = mockStore({
-  //     dinos: { data: [], loading: true, error: null },
-  //   });
-  //   store.dispatch = jest.fn();
-  //   wrapper = mount(
-  //     <Provider store={store}>
-  //       <DinoPage />
-  //     </Provider>
-  //   );
-  //   const results = await axe(`<main>${wrapper.html()}</main>`); // NOTE main is required to prevent landmark error
-  //   expect(results).toHaveNoViolations();
-  // });
-
-  // test('Error is shown when there is an error in the state', () => {
-  //   store = mockStore({
-  //     dinos: { data: [], loading: false, error: 'I am an error' },
-  //   });
-  //   store.dispatch = jest.fn();
-  //   wrapper = mount(
-  //     <Provider store={store}>
-  //       <DinoPage />
-  //     </Provider>
-  //   );
-  //   expect(wrapper.find('Errors')).toHaveLength(1);
-  //   expect(wrapper.find('#dinoLists')).toHaveLength(0);
-  // });
-
-  test('Expected number of dinos are shown and error is not shown', () => {
+  test('Component is accessible after loading dinos', async () => {
+    mock.onGet(dinoAPI.url()).replyOnce(200, mockDinos);
     const { container } = render(
       <Provider store={store}>
         <DinoPage />
       </Provider>
     );
-    const dinos = container.querySelectorAll('[data-testid="dinoListItem"]');
+
+    const results = await axe(container);
+    expect(screen.queryByTestId('Loading')).not.toBeInTheDocument();
+    expect(results).toHaveNoViolations();
+  });
+
+  test('Error is shown if there is an error getting dinos', async () => {
+    mock.reset();
+    mock.onGet(dinoAPI.url()).networkErrorOnce();
+    render(
+      <Provider store={store}>
+        <DinoPage />
+      </Provider>
+    );
+
+    await waitFor(() => screen.getByRole('alert'));
+    expect(screen.queryByTestId('Loading')).not.toBeInTheDocument();
+  });
+
+  test('Expected number of dinos are shown and error is not shown', async () => {
+    mock.onGet(dinoAPI.url()).replyOnce(200, mockDinos);
+    render(
+      <Provider store={store}>
+        <DinoPage />
+      </Provider>
+    );
+    await waitFor(() => screen.queryByTestId('dinoSelectList'));
+    const dinos = screen.getAllByTestId('dinoListItem');
     expect(dinos).toHaveLength(mockDinos[0].length);
 
     dinos.forEach((dino, index) => {
       expect(dino.textContent).toEqual(mockDinos[0][index]);
     });
+
+    expect(screen.queryByTestId('Loading')).not.toBeInTheDocument();
   });
 
-  // test('When get random dino button is pressed, loadDinoRandomThunk is called', () => {
-  //   wrapper
-  //     .find('SampleDinoPage')
-  //     .find('#getRandomDinoButton')
-  //     .first()
-  //     .simulate('click');
-  //   wrapper.update();
-  //   expect(store.dispatch).toHaveBeenCalledTimes(1);
-  //   expect(store.dispatch.mock.calls[0][0].toString()).toEqual(
-  //     loadDinoRandomThunk().toString()
-  //   );
-  // });
+  test('When clicking on a dino, it toggles in the selected dino list', async () => {
+    mock.onGet(dinoAPI.url()).replyOnce(200, mockDinos);
+    render(
+      <Provider store={store}>
+        <DinoPage />
+      </Provider>
+    );
+    await waitFor(() => screen.queryByTestId('dinoSelectList'));
+
+    // expect dino to be in the checkbox list
+    expect(
+      within(screen.getByTestId('dinoSelectList')).getByText(mockDinos[0][0])
+    ).toBeInTheDocument();
+
+    // expect 'selected' dinos to be an empty list
+    expect(
+      within(screen.getByTestId('dinoSelectedList')).queryAllByRole('listitem')
+    ).toHaveLength(0);
+
+    // click checkbox to check
+    fireEvent.click(
+      within(screen.getByTestId('dinoSelectList')).getByText(mockDinos[0][0])
+    );
+
+    // expect dino to be in the "selected dinos" list
+    expect(
+      within(screen.getByTestId('dinoSelectedList')).getByText(mockDinos[0][0])
+    ).toBeInTheDocument();
+
+    // click checkbox to uncheck
+    fireEvent.click(
+      within(screen.getByTestId('dinoSelectList')).getByText(mockDinos[0][0])
+    );
+
+    // expect dino to not be in the "selected dinos" list
+    expect(
+      // @ts-ignore
+      within(screen.queryByTestId('dinoSelectedList')).queryByText(
+        mockDinos[0][0]
+      )
+    ).not.toBeInTheDocument();
+  });
+
+  // test('When get random dino button is pressed', () => {});
 });

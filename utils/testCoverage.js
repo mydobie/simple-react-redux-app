@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // Reports back code coverage.
 // This is normally used as part of a pre-pr type of check like in a Jenkinsfile
 // It is not used by the React application

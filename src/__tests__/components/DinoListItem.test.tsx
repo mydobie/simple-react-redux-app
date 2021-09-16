@@ -1,5 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
+
+// @ts-ignore
 import { render, fireEvent } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import DinoListItem from '../../components/DinoListItem';
@@ -39,7 +41,7 @@ describe('Loading icon tests', () => {
     fireEvent.click(container.querySelectorAll('input[type="checkbox"]')[0]);
 
     expect(mockChangeCheckbox).toHaveBeenCalledTimes(1);
-    expect((mockChangeCheckbox.mock.calls[0] as any[])[0]).toBe('4');
-    expect((mockChangeCheckbox.mock.calls[0] as any[])[1]).toBe(true); // second attribute sent
+    expect((mockChangeCheckbox.mock.calls[0] as string[])[0]).toBe('4');
+    expect((mockChangeCheckbox.mock.calls[0] as boolean[])[1]).toBe(true); // second attribute sent
   });
 });

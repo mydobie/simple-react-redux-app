@@ -44,7 +44,7 @@ const SampleDinoPage = (): ReactElement => {
     <div>
       <h2>Please select dinosaurs:(stored in Redux)</h2>
 
-      <ul>
+      <ul data-testid='dinoSelectList'>
         {dinos.map((dino) => (
           <DinoListItem
             testid='dinoListItem'
@@ -73,10 +73,10 @@ const SampleDinoPage = (): ReactElement => {
           {!loading && error ? <Errors>{error}</Errors> : null}
           {loading ? <Loading /> : null}
           {!loading && !error ? (
-            <div id='dinoLists'>
+            <>
               {dinoList}
               <DinoList />
-            </div>
+            </>
           ) : null}
         </Col>
       </Row>
@@ -101,30 +101,5 @@ const SampleDinoPage = (): ReactElement => {
     </>
   );
 };
-
-// SampleDinoPage.defaultProps = {
-//   dinos: [],
-//   loading: false,
-//   onDinoSelect: () => {},
-//   error: null,
-// };
-
-// // NOTE: The values from selectors will be part of the pros:
-// const mapStateToProps = (state) => ({
-//   // EXAMPLE: Calling a selector to get values from redux state
-//   dinos: getDinosSelector(state),
-//   loading: isDinosLoadingSelector(state),
-//   error: getDinoErrorSelector(state),
-// });
-
-// // NOTE: Functions passed from Thunks and Actions passed to the props
-// const mapDispatchToProps = (dispatch) => ({
-//   // EXAMPLE: Calling a thunk (aka aside action with a ajax call)
-//   startLoadingDinos: () => dispatch(loadDinosThunk()),
-//   getRandomDino: async () => dispatch(loadDinoRandomThunk()),
-//   // EXAMPLE: Calling an action
-//   onDinoSelect: (dinoId, selected) =>
-//     dispatch(setDinoSelectedAction(dinoId, selected)),
-// });
 
 export default SampleDinoPage;

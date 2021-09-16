@@ -68,12 +68,19 @@ export const DinosSlice = createSlice({
       const newDinos = currentDinos.filter((dino) => dino.id !== id);
       state.data = newDinos;
     },
+
+    // NOTE this resets the state to the inital state
+    // normally this isn't used in application, but can be helpful during testing
+    resetDinoStore: () => initialState,
+
     toggleDinoLoadingIcon: (state) => {
       state.loading = !state.loading;
     },
+
     setDinoError: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
     },
+
     setDinoSelection: (
       state,
       action: PayloadAction<{ id: string; selected: boolean }>
@@ -85,6 +92,7 @@ export const DinosSlice = createSlice({
       state.data = newDinos;
     },
   },
+
   extraReducers: (builder) => {
     builder.addCase(loadDinos.fulfilled, (state, { payload }) => {
       payload.forEach((dino: DinoType, index: number) => {
@@ -115,6 +123,7 @@ export const {
   toggleDinoLoadingIcon,
   setDinoError,
   setDinoSelection,
+  resetDinoStore,
 } = DinosSlice.actions;
 
 export default DinosSlice.reducer;

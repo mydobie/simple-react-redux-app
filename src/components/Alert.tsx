@@ -38,10 +38,9 @@ const Errors = ({
       <li key={index}>{error}</li>
     )
   );
-  // eslint-disable-next-line no-console
-  console.log('Alert type', type);
+
   return (
-    <Alert variant={type}>
+    <Alert variant={type} data-testid='alertError'>
       {title !== '' ? <h2 className='alertTitle'>{title}</h2> : null}
       {children}
       {buildFromArray.length > 0 ? <ul>{buildFromArray}</ul> : null}

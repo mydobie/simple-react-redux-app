@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
+// @ts-ignore
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import Alert from '../../components/Alert';
@@ -34,9 +36,11 @@ describe('Alert tests', () => {
     render(<Alert title='I have an error' errorArray={errorArray} />);
     expect(screen.getAllByRole('listitem')).toHaveLength(errorArray.length);
 
-    screen.getAllByRole('listitem').forEach((listItem, index) => {
-      expect(listItem).toHaveTextContent(errorArray[index]);
-    });
+    screen
+      .getAllByRole('listitem')
+      .forEach((listItem: HTMLElement, index: number) => {
+        expect(listItem).toHaveTextContent(errorArray[index]);
+      });
   });
 
   test('Children are shown', () => {
