@@ -2,7 +2,7 @@
 // *********************** GET ENVIRONMENT BASED ON URL ************************* //
 // Add non-prod environments here:
 
-export const envTypes = {
+const envTypes = {
   dev: 'dev',
   ci: 'ci',
   test: 'test',
