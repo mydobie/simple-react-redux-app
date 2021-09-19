@@ -9,10 +9,10 @@ import { DinoType } from '../reducers/dinos';
 export const getDinosSelector = (state: RootState): DinoType[] =>
   state.dinos.data;
 
-export const getDinoSelector = (
-  state: RootState,
-  id = ''
-): DinoType | undefined => state.dinos.data.find((dino) => dino.id === id);
+// export const getDinoSelector = (
+//   state: RootState,
+//   id = ''
+// ): DinoType | undefined => state.dinos.data.find((dino) => dino.id === id);
 
 export const getSelectedDinosSelector = (state: RootState): DinoType[] =>
   state.dinos.data.filter((dino) => dino.selected === true);

@@ -55,31 +55,32 @@ export const DinosSlice = createSlice({
   name: 'dinos',
   initialState,
   reducers: {
-    addDino: (state, action: PayloadAction<DinoType>) => {
-      // not used, but keeping as an example
-      const newDinos = [...state.data];
-      newDinos.push(action.payload);
-      state.data = newDinos;
-    },
-    deleteDino: (state, action: PayloadAction<string>) => {
-      // not used, but keeping as an example
-      const id = action.payload;
-      const currentDinos = [...state.data];
-      const newDinos = currentDinos.filter((dino) => dino.id !== id);
-      state.data = newDinos;
-    },
+    // addDino: (state, action: PayloadAction<DinoType>) => {
+    //   // not used, but keeping as an example
+    //   const newDinos = [...state.data];
+    //   newDinos.push(action.payload);
+    //   state.data = newDinos;
+    // },
+
+    // deleteDino: (state, action: PayloadAction<string>) => {
+    //   // not used, but keeping as an example
+    //   const id = action.payload;
+    //   const currentDinos = [...state.data];
+    //   const newDinos = currentDinos.filter((dino) => dino.id !== id);
+    //   state.data = newDinos;
+    // },
 
     // NOTE this resets the state to the inital state
     // normally this isn't used in application, but can be helpful during testing
     resetDinoStore: () => initialState,
 
-    toggleDinoLoadingIcon: (state) => {
-      state.loading = !state.loading;
-    },
+    // toggleDinoLoadingIcon: (state) => {
+    //   state.loading = !state.loading;
+    // },
 
-    setDinoError: (state, action: PayloadAction<string>) => {
-      state.error = action.payload;
-    },
+    // setDinoError: (state, action: PayloadAction<string>) => {
+    //   state.error = action.payload;
+    // },
 
     setDinoSelection: (
       state,
@@ -118,10 +119,10 @@ export const DinosSlice = createSlice({
 });
 
 export const {
-  addDino,
-  deleteDino,
-  toggleDinoLoadingIcon,
-  setDinoError,
+  // addDino,
+  // deleteDino,
+  // toggleDinoLoadingIcon,
+  // setDinoError,
   setDinoSelection,
   resetDinoStore,
 } = DinosSlice.actions;

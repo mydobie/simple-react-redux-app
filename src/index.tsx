@@ -12,7 +12,7 @@ import { store } from './redux/store';
 import './scss/index.scss';
 
 const useRedux = process.env.REACT_APP_USE_REDUX === 'true';
-const persist = process.env.REACT_APP_USE_REDUX_PERSIST === 'true';
+const persist = process.env.REACT_APP_USE_LOCAL_STORAGE === 'true';
 
 let RenderApp: ReactElement;
 

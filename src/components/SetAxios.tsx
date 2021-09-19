@@ -1,54 +1,65 @@
 // NOTE This file allows you to write code that will be run before and after every ajax call
 
 /* eslint-disable no-fallthrough */
-/* eslint-disable arrow-body-style */
+
 import React, { ReactElement } from 'react';
 import axios from 'axios';
 // import { useHistory, useLocation } from 'react-router-dom';
 
+interface Props {
+  clearError?: () => void;
+  setError?: (error?: string) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  testResponse?: (response: any) => void; // this is only used to test SetAxios
+  testMode?: boolean;
+}
 const SetAxios = ({
-  clearError,
-  setError,
-}: {
-  clearError: () => void;
-  setError: (error: string) => void;
-}): ReactElement => {
-  // const { clearError, setError } = props;
+  clearError = () => {},
+  setError = () => {},
+  testResponse = () => {},
+  testMode = false,
+}: Props): ReactElement => {
   // const history = useHistory(); // You can goto another route automatically = history.push("/mypath")
   // const location = useLocation(); // Route of current page = location.pathname
 
   SetAxios.setAxiosHeaders();
 
   axios.interceptors.request.use(
-    (request) => {
+    (config) => {
       // Add code to be run before an ajax call is made HERE
       clearError();
-      return request;
+      return config;
     },
-    (error) => Promise.reject(error)
+    (error) => (!testMode ? Promise.reject(error) : null)
   );
 
   axios.interceptors.response.use(
     (response) => {
       // Add code to be run after a successful ajax call HERE
+      testResponse(response);
       return response;
     },
     (error) => {
-      switch (error.response.status) {
-        case 401:
-        //  history.push(LOGIN_ROUTE); // example to forward to another page
-        // break;
-        case 403:
-        // break;
-        case 404:
-        // break;
-        case 500:
-        // break;
-        default:
-          setError(SetAxios.UNKNOWN_ERROR);
-          break;
+      // Add code to be run after a failed ajax call HERE
+      if (error.response?.status) {
+        switch (error.response?.status) {
+          case 401:
+          //  history.push(LOGIN_ROUTE); // example to forward to another page
+          // break;
+          case 403:
+          // break;
+          case 404:
+          // break;
+          case 500:
+          // break;
+          default:
+            setError(SetAxios.UNKNOWN_ERROR);
+            break;
+        }
+      } else {
+        setError(SetAxios.UNKNOWN_ERROR);
       }
-      return Promise.reject(error);
+      return !testMode ? Promise.reject(error) : null;
     }
   );
 

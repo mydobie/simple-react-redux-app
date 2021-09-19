@@ -1,46 +1,68 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // *********************** GET ENVIRONMENT BASED ON URL ************************* //
 // Add non-prod environments here:
-const environments = [
-  { urlpattern: 'localhost', env: 'dev' },
-  { urlpattern: 'dev.', env: 'dev' },
-  { urlpattern: 'development.', env: 'dev' },
-  { urlpattern: 'test.', env: 'test' },
-  { urlpattern: 'qat.', env: 'qa' },
-];
 
-const { hostname } = window.location;
-
-export const isProd = (url: string | null = null): boolean => {
-  const host = url === null ? hostname : url;
-  // eslint-disable-next-line arrow-body-style
-  const found = environments.find((env) => {
-    return host.includes(env.urlpattern);
-  });
-  return found === undefined; // found is undefined if there isn't a match found
+export const envTypes = {
+  dev: 'dev',
+  ci: 'ci',
+  test: 'test',
+  stage: 'stage',
+  prod: 'prod',
 };
 
-export const whichEnv = (url: string | null = null): string => {
-  const host = url === null ? hostname : url;
+const environments = [
+  { urlpattern: 'localhost', env: envTypes.dev },
+  { urlpattern: '127.0.0.1', env: envTypes.dev },
+  { urlpattern: 'dev.', env: envTypes.dev },
+  { urlpattern: 'development.', env: envTypes.dev },
+  { urlpattern: 'test.', env: envTypes.test },
+  { urlpattern: 'tst.', env: envTypes.test },
+  { urlpattern: 'ci.', env: envTypes.ci },
+  { urlpattern: 'qa.', env: envTypes.stage },
+  { urlpattern: 'qat.', env: envTypes.stage },
+  { urlpattern: 'stage.', env: envTypes.stage },
+  { urlpattern: 'staging.', env: envTypes.stage },
+];
+
+export const isProd = (): boolean => {
+  const host = window.location.hostname;
+  return !environments.some((env) => host.includes(env.urlpattern));
+};
+
+export const whichEnvString = (): string => {
+  // Handy for debugging and printing to console
+  const host = window.location.hostname;
   const found = environments.find((env) => host.includes(env.urlpattern));
   return `Hostname: ${host}, Environment: ${
     found === undefined ? 'production' : found.env
   }`;
 };
 
-const isEnv = (envType: string, url: string | null = null): boolean => {
-  const host = url === null ? hostname : url;
-  const found = environments.find(
+const isEnv = (envType: string): boolean => {
+  const host = window.location.hostname;
+
+  // @ts-ignore
+  if (!envTypes[envType]) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `Environment ${envType} sent to "isEnv" helper function is unknown.`
+    );
+  }
+
+  return environments.some(
     (env) => host.includes(env.urlpattern) && env.env === envType
   );
-  return found !== undefined;
 };
 
-export const isDev = (url: string | null = null): boolean => isEnv('dev', url);
-export const isTest = (url: string | null = null): boolean =>
-  isEnv('test', url);
-export const isQa = (url: string | null = null): boolean => isEnv('qa', url);
+export const isDev = (): boolean => isEnv(envTypes.dev);
 
-export const isLocalHost = (url: string | null = null): boolean => {
-  const host = url === null ? hostname : url;
+export const isCI = (): boolean => isEnv(envTypes.ci);
+
+export const isTest = (): boolean => isEnv(envTypes.test);
+
+export const isStage = (): boolean => isEnv(envTypes.stage);
+
+export const isLocalHost = (): boolean => {
+  const host = window.location.hostname;
   return host.includes('localhost') || host.includes('127.0.0.1');
 };
