@@ -57,10 +57,6 @@ The application wil be available at [http://localhost:3000](http://localhost:300
 
 If you need to change the port the application is running on, then change the `PORT` value in the `.env` file. This `PORT` value is only used for the development server and will not impact a production or production-like (like staging) environment.
 
-#### Known warnings
-
-While starting up the development server, some known warnings or errors may be displayed. Please see the `Build/Known warnings` section below.
-
 ### Run tests
 
 To run the tests, run `npm run test` in a terminal the root of the project. This will run all of the tests in the `src/__tests__` directory.
@@ -97,8 +93,6 @@ If you want to create the build (production-ready) without creating a tar file, 
 
 #### Known warnings
 
-If you get a `Node Sass could not find a binding for your current environment` error, it means that the SASS compiler wasn't downloaded for your node version and OS. Run `npm run d` to ensure that the correct version of the compiler is downloaded.
-
 If the application has feature flags enabled, a harmless `Module not found: Can't resolve ... ` warnings will be shown and they can be ignored. These warnings will not prevent the build from happening nor will it impact the application. It is currently a known issue with the feature flags module.
 
 ---
@@ -114,10 +108,3 @@ Some other process will need to pull the artifact from Artifactory, and untar th
 ### Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-### Local modules
-
-This application uses a couple of modules that are not available via an NPM registry yet.
-
-- [feature_flags](https://github.umn.edu/oit-react-components/featureFlags)
-- [umn_web_template_components](https://github.umn.edu/oit-react-components/umn_web_template_components)

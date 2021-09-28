@@ -15,6 +15,7 @@ const fileName = `${name}-${version}.tgz`;
 
 const archiveDirectory = 'archive/'; // Note, trailing / is required.  set to '' to save at the root of the project
 
+console.log('Starting archive process.  This can take a while.');
 exec(
   `npm run build && mkdir -p ${archiveDirectory} && cd build && tar --exclude='./__fixtures__' -cvzf ../${archiveDirectory}${fileName} .`,
   // eslint-disable-next-line no-unused-vars

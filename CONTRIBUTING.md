@@ -6,7 +6,7 @@ This application uses a modified version of GitHub flow. All code moved to a ser
 
 1. When starting work toward a new release, branch off the master branch or a known release (aka tag) for retrofits.
 1. If there will be multiple persons working or multiple features on the new release, then create branches of the new release branch.
-1. As the last commit on the release branch, change the version in the `package.json` file and run `npm i` to update the `package-lock.json` file. Note: do not tag or create a version yet.
+1. As the last commit on the release branch, change the version in the `package.json` file and run `npm run d` to update the `package-lock.json` file. Note: do not tag or create a version yet.
 1. Submit for pull request into the master branch.
    1. Reviewers should ensure that the version has been updated and does not match an existing release tag
 1. Once approved by at least 2 approvers, merge or squash merge the pull request
@@ -46,13 +46,13 @@ Changes:
 
 A test driven development (TDD) should be used when building react components. This means writing a test for a component before it is built. This will encourage wider code coverage and reduction on the dependance on snapshot tests.
 
-For every `.js `or `.jsx` file, there should be a corresponding test file in the directory in the `/src/__tests__` directory. This ensures that if a component is moved to another application, all the tests testing that component can also be easily moved.
+For every `.ts `or `.tsx` file, there should be a corresponding test file in the directory in the `/src/__tests__` directory. This ensures that if a component is moved to another application, all the tests testing that component can also be easily moved.
 
 If at all possible snapshot tests (where results are compared to a previous run's html) should be avoided. While they can be helpful early in development, they should be replaced with more detailed tests later on.
 
 Text matching tests should be avoided.
 
-Because of the nature of the Node, Jest, React, Redux and Enzyme environment, a very high level of test coverage (85+ lines covered) is expected.
+Because of the nature of the Node, Jest, React, and Redux environment, a very high level of test coverage (85+ lines covered) is expected.
 
 ---
 
@@ -64,6 +64,10 @@ Because of the nature of the Node, Jest, React, Redux and Enzyme environment, a 
 
 While both Eslint and Prettier enforce strict coding practices, there are numerous code styles that aren't caught by the linters or formatters.
 
+### Typescript
+
+Except for build utility files, all files should be Typescript.
+
 ### Naming
 
 All files, class names, function/method, and variable names are camel case. Class names and component file names start with a capital letters.
@@ -72,7 +76,7 @@ All files, class names, function/method, and variable names are camel case. Clas
 
 - GitHub recognized files like README.md, CONTRIBUTING.md, and LICENSE.md. These file names are all capitals.
 - "Magic" folders that are used during testing are named starting and ending with "\_\_"
-- Global static variables (commonly called enums in other languages) are all caps and snake case.
+- Global static variables are all caps and snake case.
 
 ### If statements
 
