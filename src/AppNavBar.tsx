@@ -4,19 +4,19 @@ import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 
-import { HOME_ROUTE, VERSION_ROUTE, DINO_ROUTE } from './AppRouteNames';
+import ROUTES from './AppRouteNames';
 
 const AppNavBar = (): ReactElement => (
   <nav>
     <Nav>
       <Nav.Item>
-        <NavLink activeClassName='active' className='nav-link' to={HOME_ROUTE}>
+        <NavLink activeClassName='active' className='nav-link' to={ROUTES.HOME}>
           Home
         </NavLink>
       </Nav.Item>
 
       <Nav.Item>
-        <NavLink activeClassName='active' className='nav-link' to={DINO_ROUTE}>
+        <NavLink activeClassName='active' className='nav-link' to={ROUTES.DINO}>
           Dino (sample Redux page)
         </NavLink>
       </Nav.Item>
@@ -25,7 +25,17 @@ const AppNavBar = (): ReactElement => (
         <NavLink
           activeClassName='active'
           className='nav-link'
-          to={VERSION_ROUTE}
+          to={ROUTES.FEATURE_FLAGS}
+        >
+          Feature flags
+        </NavLink>
+      </Nav.Item>
+
+      <Nav.Item>
+        <NavLink
+          activeClassName='active'
+          className='nav-link'
+          to={ROUTES.VERSION}
         >
           Version
         </NavLink>
