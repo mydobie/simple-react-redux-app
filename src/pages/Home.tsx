@@ -14,7 +14,14 @@ const Home = (): ReactElement => (
           <p>This is the home page for an application</p>
         </Card.Body>
       </Card>
-      <Loading>We are loading data</Loading>
+      <p>
+        This project can be used as template when starting other React/Redux
+        projects.
+      </p>
+      <p>
+        This is what the loading icon will look like:
+        <Loading>We are loading data</Loading>
+      </p>
     </Col>
   </Row>
 );

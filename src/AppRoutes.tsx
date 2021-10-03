@@ -2,8 +2,10 @@
 
 import React, { ReactElement } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { FeatureFlagsReduxUI } from 'feature-flags';
+import { isProd } from './js/whichEnv';
 
-import { HOME_ROUTE, VERSION_ROUTE, DINO_ROUTE } from './AppRouteNames';
+import ROUTES from './AppRouteNames';
 
 import Home from './pages/Home';
 import Dino from './pages/Dino';
@@ -13,17 +15,23 @@ import FourOhFour from './pages/FourOhFour';
 const AppRoutes = (): ReactElement => (
   <>
     <Switch>
-      <Route path={HOME_ROUTE} exact>
+      <Route path={ROUTES.HOME} exact>
         <Home />
       </Route>
 
-      <Route path={DINO_ROUTE}>
+      <Route path={ROUTES.DINO}>
         <Dino />
       </Route>
 
-      <Route path={VERSION_ROUTE}>
+      <Route path={ROUTES.VERSION}>
         <Version />
       </Route>
+
+      {!isProd() ? (
+        <Route path={ROUTES.FEATURE_FLAGS}>
+          <FeatureFlagsReduxUI />
+        </Route>
+      ) : null}
 
       <Route path='/'>
         <FourOhFour />
