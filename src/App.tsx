@@ -18,6 +18,7 @@ import './scss/index.scss';
 
 // eslint-disable-next-line arrow-body-style
 const Footer = (): ReactElement => {
+  // EXAMPLE: Show/Hide based on feature flag
   const isColors = useSelector((state) => isFeatureActive('COLORS', state));
   return (
     <>
@@ -35,6 +36,7 @@ const Footer = (): ReactElement => {
 };
 
 const App = (): ReactElement => {
+  // EXAMPLE: Load feature flags to redux store
   useDispatch()(
     loadFeatureFlagsRedux({
       features: featureFlagArray,

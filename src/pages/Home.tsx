@@ -18,10 +18,8 @@ const Home = (): ReactElement => (
         This project can be used as template when starting other React/Redux
         projects.
       </p>
-      <p>
-        This is what the loading icon will look like:
-        <Loading>We are loading data</Loading>
-      </p>
+      <p>This is what the loading icon will look like:</p>
+      <Loading>We are loading data</Loading>
     </Col>
   </Row>
 );

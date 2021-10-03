@@ -29,6 +29,7 @@ const AppRoutes = (): ReactElement => (
 
       {!isProd() ? (
         <Route path={ROUTES.FEATURE_FLAGS}>
+          {/* EXAMPLE: Feature flag UI */}
           <FeatureFlagsReduxUI />
         </Route>
       ) : null}

@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import React, { ReactElement } from 'react';
 
 import { Row, Col } from 'react-bootstrap';
@@ -21,6 +19,7 @@ import Loading from '../components/Loading';
 import { DinoType, loadDinos, setDinoSelection } from '../redux/reducers/dinos';
 
 const SampleDinoPage = (): ReactElement => {
+  // EXAMPLE: Calling a selector
   const dinos: DinoType[] = useSelector((state: RootState) =>
     getDinosSelector(state)
   );
@@ -36,6 +35,7 @@ const SampleDinoPage = (): ReactElement => {
 
   React.useEffect(() => {
     if (dinos.length === 0) {
+      // EXAMPLE: Calling a thunk
       dispatch(loadDinos());
     }
   }, [dinos, dispatch]);
@@ -53,6 +53,7 @@ const SampleDinoPage = (): ReactElement => {
             dinoId={dino.id}
             checked={dino.selected}
             changeCheckBox={(dinoId, checked) =>
+              // EXAMPLE: Calling a reducer
               dispatch(setDinoSelection({ id: dinoId, selected: checked }))
             }
           />
@@ -78,24 +79,6 @@ const SampleDinoPage = (): ReactElement => {
               <DinoList />
             </>
           ) : null}
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          {/* <hr />
-          <h2>Get a random dino (stored in component state)</h2>
-          <p>
-            {randomDino !== null ? (
-              `Your Dino is a ${randomDino}`
-            ) : (
-              <Button
-                id='getRandomDinoButton'
-                onClick={this.handleGetRandomDino}
-              >
-                Get your random dino
-              </Button>
-            )}
-          </p> */}
         </Col>
       </Row>
     </>

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable no-param-reassign */
 /*
+
 Reducers update the redux store.
 
 NOTE: This should be a separate reducer file for each subset of data to be saved in the redux store.
@@ -27,8 +27,10 @@ export const initialState: DinoState = {
 };
 
 /* ************** Thunks *************** */
+// EXAMPLE: Side action (aka aside action with a ajax call)
 export const loadDinos = createAsyncThunk(
   'dinos/loadDinos',
+  // @ts-ignore
   async (_, { rejectWithValue }) => {
     try {
       const axiosConfig: AxiosRequestConfig = {
@@ -70,20 +72,9 @@ export const DinosSlice = createSlice({
     //   state.data = newDinos;
     // },
 
-    // NOTE this resets the state to the inital state
-    // normally this isn't used in application, but can be helpful during testing
-    resetDinoStore: () => initialState,
-
-    // toggleDinoLoadingIcon: (state) => {
-    //   state.loading = !state.loading;
-    // },
-
-    // setDinoError: (state, action: PayloadAction<string>) => {
-    //   state.error = action.payload;
-    // },
-
+    // EXAMPLE: Reducer (putting information into the redux store)
     setDinoSelection: (
-      state,
+      state: DinoState,
       action: PayloadAction<{ id: string; selected: boolean }>
     ) => {
       const { id, selected } = action.payload;
@@ -92,26 +83,34 @@ export const DinosSlice = createSlice({
       );
       state.data = newDinos;
     },
+
+    // NOTE this resets the state to the initial state
+    // normally this isn't used in application, but can be helpful during testing
+    resetDinoStore: () => initialState,
   },
 
+  // @ts-ignore
   extraReducers: (builder) => {
-    builder.addCase(loadDinos.fulfilled, (state, { payload }) => {
-      payload.forEach((dino: DinoType, index: number) => {
-        const id = `${index}`;
-        if (!state.data.some((d) => d.id === id)) {
-          state.data.push(dino);
-        }
-      });
-      state.error = null;
-      state.loading = false;
-    });
+    builder.addCase(
+      loadDinos.fulfilled,
+      (state: DinoState, { payload }: { payload: DinoType[] }) => {
+        payload.forEach((dino: DinoType, index: number) => {
+          const id = `${index}`;
+          if (!state.data.some((d) => d.id === id)) {
+            state.data.push(dino);
+          }
+        });
+        state.error = null;
+        state.loading = false;
+      }
+    );
 
-    builder.addCase(loadDinos.pending, (state) => {
+    builder.addCase(loadDinos.pending, (state: DinoState) => {
       state.loading = true;
       state.error = null;
     });
 
-    builder.addCase(loadDinos.rejected, (state) => {
+    builder.addCase(loadDinos.rejected, (state: DinoState) => {
       state.loading = false;
       state.error = 'There was an error loading the dinosaurs.';
     });
@@ -121,8 +120,6 @@ export const DinosSlice = createSlice({
 export const {
   // addDino,
   // deleteDino,
-  // toggleDinoLoadingIcon,
-  // setDinoError,
   setDinoSelection,
   resetDinoStore,
 } = DinosSlice.actions;
