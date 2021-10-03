@@ -2,25 +2,32 @@
 
 ## How to commit changes
 
-This application uses a modified version of GitHub flow. All code moved to a server must be contained in a release. All releases must be made from the master branch. The head of the master branch will contain the latest deployable code. Note that the head of master branch may contain code that is on a test/qa/staging and/or production environment. Master is not tied to an application instance. (test/qa/staging, production)
+This application uses a modified version of GitHub flow. All releases must be made from the master branch. The head of the master branch will contain the latest deployable code.
 
-1. When starting work toward a new release, branch off the master branch or a known release (aka tag) for retrofits.
-1. If there will be multiple persons working or multiple features on the new release, then create branches of the new release branch.
-1. As the last commit on the release branch, change the version in the `package.json` file and run `npm run d` to update the `package-lock.json` file. Note: do not tag or create a version yet.
-1. Submit for pull request into the master branch.
-   1. Reviewers should ensure that the version has been updated and does not match an existing release tag
-1. Once approved by at least 2 approvers, merge or squash merge the pull request
+1. When starting work toward a new release, branch off the `main` branch or a known release for retrofits.
+1. Submit a pull request any changes into the main branch.
+1. Once approved the approvers will squash merge the pull request
 1. Delete the release branch and all "child" branches
-1. Create a release tag in GitHub using the following templates described below.
-1. After Jenkins and/or GitHub Actions has finished, verify that a GitHub release has been created and there is a new corresponding artifact in Artifactory and/or GitHub packages. If not manually create the GitHub release off the master branch and upload the artifact.
+1. After GitHub Actions has finished, verify that a GitHub release has been created and there is a new corresponding GitHub package.
+1. Update the release description in GitHub
+
+### Versioning
+
+The version in the `package.json` file updates automatically when merged into the `main` branch.
+
+The new version is determined by the pull request merge commit message:
+
+- If the string "BREAKING CHANGE" or "major" is found anywhere in any of the commit messages or descriptions the major version will be incremented.
+- If the string "feat" or "minor" is found anywhere in any of the commit messages or descriptions the minor version will be incremented.
+- All else, the patch version will be incremented.
+
+See [gh-action-bump-version](https://github.com/phips28/gh-action-bump-version) for more information.
 
 ### Releases
 
-The GitHub releases are used by both developers and business owners, the release notes should be fairly detailed.
+It is necessary to update the release description and notes in GitHub after GitHub actions have been run.
 
-The tag for the release should start with a `v` and then have the version number as specified in the `package.json` file. For example: `v1.1.0`
-
-Release title should contain the version and a short summary description. For example: `Version 1.1.0 - Accessibility fixes`
+Release title should contain the version and a short summary description. For example: `Version 2.1.0 - Accessibility fixes`
 
 The release body contains a description along with lists of items added, removed and modified. For example:
 
@@ -46,19 +53,29 @@ Changes:
 
 A test driven development (TDD) should be used when building react components. This means writing a test for a component before it is built. This will encourage wider code coverage and reduction on the dependance on snapshot tests.
 
-For every `.ts `or `.tsx` file, there should be a corresponding test file in the directory in the `/src/__tests__` directory. This ensures that if a component is moved to another application, all the tests testing that component can also be easily moved.
+The goal of testing to test the component how the user would test it in the browser. This means that private methods or components that are only consumed by other components do not need test directly testing those items. See [React testing library](https://testing-library.com/docs/react-testing-library/intro/#the-problem.)
 
-If at all possible snapshot tests (where results are compared to a previous run's html) should be avoided. While they can be helpful early in development, they should be replaced with more detailed tests later on.
+Tests should be saved in the `/src/__tests__` directory.
 
-Text matching tests should be avoided.
+If at all possible snapshot tests (where results are compared to a previous run's html) should be avoided.
 
-Because of the nature of the Node, Jest, React, and Redux environment, a very high level of test coverage (85+ lines covered) is expected.
+Text matching tests should be avoided, the use of [testIds](https://testing-library.com/docs/queries/bytestid/) is preferred.
+
+Because of the nature of the Node, Jest, React, and Redux environment, a very high level of test coverage (at least 85% lines covered) is expected.
+
+---
 
 ---
 
 ---
 
----
+## TypeScript
+
+TypeScript will be used inside of the `src` folder.
+
+### React functional components only
+
+Class based components should not used. All react components should be functions and use hooks to maintain state.
 
 ## Code formatting
 

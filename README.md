@@ -10,6 +10,8 @@ Directions on how create a new app using the files in this project are located i
 
 CHANGE ME => Brief description of what this application does.
 
+CHANGE ME => [See app in action]()
+
 ## Get me started:
 
 At the root of the project run the following commands in a terminal to verify you can perform all the development tasks:
@@ -22,6 +24,10 @@ At the root of the project run the following commands in a terminal to verify yo
 1.  Start dev server using mocked data => `npm run start:mock` then go to [http://localhost:3000](http://localhost:3000)
 1.  Verify you can build production files => `npm run build`
 1.  Verify you can make tar for deployment => `npm run createTar`
+
+## Versioning
+
+The version of the application is done automatically when merging a pull request into the main branch. Do not increment the version on the package.json file manually. See [Contributing.md](CONTRUBUTING.md) for more information.
 
 ## Node
 
@@ -45,7 +51,7 @@ After installing dependencies, you can check to see what dependencies are out of
 
 You can check if there is any high or critical security advisories for installed dependencies by running `npm run npmAudit`.
 
-This application uses [Husky](https://github.com/typicode/husky) to automatically install Git Hooks that will check for security advisories at commit time. Commits will fail if any dependency has a high or critical security advisory. See the `husky` section in the `package.json` file. This means that you cannot commit code until high or critical security advisories are resolved. This was done intentionally because resolving high or critical security advisories is always the highest priority.
+This project uses [Husky](https://github.com/typicode/husky) to automatically install Git Hooks that will check for security advisories at commit time. Commits will fail if any dependency has a high or critical security advisory. See the `.husky/pre-commit` file. This means that you cannot commit code until high or critical security advisories are resolved. This was done intentionally because resolving high or critical security advisories is always the highest priority.
 
 ## Start the development server
 
@@ -65,7 +71,7 @@ After running tests, you can check the coverage reports by opening `coverage/ind
 
 If you prefer, you can have the testing run in "watch" mode by running `npm run test:watch` in a terminal at the root of the project. The tests will be rerun as you make edits. Note coverage reports will not be updated while in watch mode.
 
-Test are run in [Jest](https://jestjs.io/docs/en/expect), use [Enzyme](https://enzymejs.github.io/enzyme/) to inspect components, and [jest-axe](https://github.com/nickcolley/jest-axe) to check for accessibility.
+Test are run in [Jest](https://jestjs.io/docs/en/expect), use [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) to inspect components, and [jest-axe](https://github.com/nickcolley/jest-axe) to check for accessibility.
 
 #### Snapshot tests
 
@@ -91,17 +97,48 @@ Normally a tar file with the build (production-ready) files needs to be created 
 
 If you want to create the build (production-ready) without creating a tar file, run `npm run build` in a terminal at the root fo the project. This will create production-ready files in a `build` directory.
 
-#### Known warnings
-
-If the application has feature flags enabled, a harmless `Module not found: Can't resolve ... ` warnings will be shown and they can be ignored. These warnings will not prevent the build from happening nor will it impact the application. It is currently a known issue with the feature flags module.
-
 ---
 
-#### Deploying
+## GitHub actions
 
-The process to deploy an artifact (aka tar file) to a server is not handled by this application, Jenkinsfile, nor GitHub action file.
+This repository uses numerous GitHub actions to run tests, create artifacts, and create tags. Many of these actions will happen automatically, but some of them can be run manually.
 
-Some other process will need to pull the artifact from Artifactory, and untar the files. This could be Ansible, Chef, or even done manually.
+The status of any actions can be viewed on the actions page. The action files are located in the `.github/workflows` directory.
+
+### Run tests
+
+All pull requests will have the following tests run:
+
+- Linting
+- Check for high or critical security advisories
+- Unit tests
+- Check for adequate test coverage (see `utils/testCoverage.js`)
+- Verify that the code can be built
+
+If you want to run these tests against another branch, you can do the following at any time:
+
+1. Go to the the actions and select "Test Code".
+1. Click "Run workflow" drop down.
+1. Choose the branch you want to run the tests against.
+
+If you get a "Workflow does not exist or does not have a workflow_dispatch trigger in this branch" warning, be sure that the `.github/workflows/test_and_build.yml` file exists on the branch.
+
+### Update version, publish artifact, update demo site
+
+When a pull request is merged into the `main` branch, the following is automatically run.
+
+- Linting
+- Check for high or critical security advisories
+- Unit tests
+- Check for adequate test coverage (see `utils/testCoverage.js`)
+- Updates version on package.json (see [CONTRIBUTING for more information](CONTRIBUTING.md))
+- Creates a release
+- Publishes artifact to GitHub
+- Updates the demo site on the `gh-pages` branch.
+
+**Note** that these series of actions can take a while. Check the actions page to see if there are any actions still running.
+
+**Note** that you will need to manually update the release text. See [CONTRIBUTING](CONTRIBUTING.md) on what is required for the release text.
 
 ---
 

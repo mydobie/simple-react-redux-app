@@ -60,7 +60,9 @@ describe('Alert tests', () => {
     render(
       <Alert
         title='I have an error'
-        errorArray={['This is an error -  <a href="https://umn.edu">UMN</a>']}
+        errorArray={[
+          'This is an error -  <a href="https://github.com">GitHub</a>',
+        ]}
       />
     );
     expect(screen.getByRole('alert')).toHaveTextContent('This is an error');
@@ -72,7 +74,9 @@ describe('Alert tests', () => {
       <Alert
         title='I have an error'
         displayAsHTML
-        errorArray={['This is an error -  <a href="https://umn.edu">UMN</a>']}
+        errorArray={[
+          'This is an error -  <a href="https://github.com">GitHub</a>',
+        ]}
       />
     );
     expect(screen.getByRole('alert')).toHaveTextContent('This is an error');
