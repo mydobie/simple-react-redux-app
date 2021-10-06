@@ -1,8 +1,16 @@
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
+import styled from 'styled-components';
 import { getSelectedDinosSelector } from '../redux/selectors/dinos';
-// import { DinoType } from '../redux/reducers/dinos';
+
+// EXAMPLE: Using styled-components
+const Li = styled.li`
+  font-size: 20px;
+  color: #7b027b;
+  font-family: serif;
+  border-bottom: 1px solid #ccc;
+`;
 
 const DinoList = (): ReactElement => {
   const selectedDinos = useSelector(getSelectedDinosSelector);
@@ -14,7 +22,7 @@ const DinoList = (): ReactElement => {
           <ul data-testid='dinoSelectedList'>
             {/* EXAMPLE: Using map to display items from an array */}
             {selectedDinos.map((dino) => (
-              <li key={dino.id}>{dino.text}</li>
+              <Li key={dino.id}>{dino.text}</Li>
             ))}
           </ul>
         </Col>

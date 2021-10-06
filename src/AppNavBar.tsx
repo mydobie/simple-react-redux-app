@@ -25,6 +25,26 @@ const AppNavBar = (): ReactElement => (
         <NavLink
           activeClassName='active'
           className='nav-link'
+          to={ROUTES.COLOR}
+        >
+          Color Page (Simple form)
+        </NavLink>
+      </Nav.Item>
+
+      <Nav.Item>
+        <NavLink
+          activeClassName='active'
+          className='nav-link'
+          to={ROUTES.REDIRECT}
+        >
+          Redirect
+        </NavLink>
+      </Nav.Item>
+
+      <Nav.Item>
+        <NavLink
+          activeClassName='active'
+          className='nav-link'
           to={ROUTES.FEATURE_FLAGS}
         >
           Feature flags

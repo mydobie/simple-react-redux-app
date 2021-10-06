@@ -2,6 +2,7 @@
 
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
+// EXAMPLE: Include an image
 import notFoundImage from '../images/page_not_found.svg';
 
 const FourOhFour = (/* props */): ReactElement => (

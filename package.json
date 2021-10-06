@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bootstrap": "5.1.1",
     "feature-flags": "mydobie/featureFlags#npmbuild2.1.0",
+    "history": "^5.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
     "react-dom": "^17.0.2",
@@ -19,7 +20,8 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "styled-components": "^5.3.1"
   },
   "// devDependencies": [
     "Sass is pinned to a lower version otherwise it breaks on the bootstrap build"
@@ -33,6 +35,7 @@
     "@types/jest-axe": "^3.5.1",
     "@types/react-router-dom": "^5.1.9",
     "@types/redux-mock-store": "^1.0.3",
+    "@types/styled-components": "^5.1.14",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "axios-mock-adapter": "^1.19.0",

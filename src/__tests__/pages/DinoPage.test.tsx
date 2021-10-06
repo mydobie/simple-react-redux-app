@@ -78,7 +78,7 @@ describe('Sample Dino Page component tests', () => {
     const dinos = screen.getAllByTestId('dinoListItem');
     expect(dinos).toHaveLength(mockDinos[0].length);
 
-    dinos.forEach((dino, index) => {
+    dinos.forEach((dino: HTMLElement, index: number) => {
       expect(dino.textContent).toEqual(mockDinos[0][index]);
     });
 

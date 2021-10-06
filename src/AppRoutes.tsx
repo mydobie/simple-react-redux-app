@@ -10,6 +10,8 @@ import ROUTES from './AppRouteNames';
 import Home from './pages/Home';
 import Dino from './pages/Dino';
 import Version from './pages/Version';
+import Color from './pages/ColorPage';
+import Redirect from './pages/RedirectPage';
 import FourOhFour from './pages/FourOhFour';
 
 const AppRoutes = (): ReactElement => (
@@ -21,6 +23,19 @@ const AppRoutes = (): ReactElement => (
 
       <Route path={ROUTES.DINO}>
         <Dino />
+      </Route>
+
+      {/* EXAMPLE Route with values in url 
+              NOTE: the ? marks an optional value */}
+      <Route
+        path={`${ROUTES.COLOR}/:colorName?`}
+        render={(colorprops) => (
+          <Color startingColor={colorprops.match.params.colorName || ''} />
+        )}
+      />
+
+      <Route path={ROUTES.REDIRECT}>
+        <Redirect />
       </Route>
 
       <Route path={ROUTES.VERSION}>
