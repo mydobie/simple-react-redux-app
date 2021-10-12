@@ -19,7 +19,7 @@ const DinoList = (): ReactElement => {
       <Row>
         <Col>
           <h2>Your selected Dinos:</h2>
-          <ul data-testid='dinoSelectedList'>
+          <ul data-testid='dinoSelectedList' style={{ margin: '30px' }}>
             {/* EXAMPLE: Using map to display items from an array */}
             {selectedDinos.map((dino) => (
               <Li key={dino.id}>{dino.text}</Li>

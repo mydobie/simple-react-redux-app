@@ -7,8 +7,7 @@ If the field entry is invalid, a warning is shown and the submit button is inact
 If the field entry is valid, a confirmation message is show and the submit button is active
 */
 import React, { ReactElement, useState, useEffect } from 'react';
-
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ROUTES from '../AppRouteNames';
 
@@ -62,7 +61,7 @@ const ColorPage = ({ startingColor }: ColorPageProps): ReactElement => {
   };
 
   return (
-    <Container>
+    <>
       <Row>
         <Col>
           <h1>Sample Form with Validation</h1>
@@ -101,7 +100,7 @@ const ColorPage = ({ startingColor }: ColorPageProps): ReactElement => {
       <Row>
         <Col style={{ paddingTop: '20px' }}>{colorButton()}</Col>
       </Row>
-    </Container>
+    </>
   );
 };
 

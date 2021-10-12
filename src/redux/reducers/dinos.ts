@@ -10,6 +10,7 @@ The number of subsets will vary greatly per project
 import axios, { AxiosRequestConfig } from 'axios';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { dinoAPI, ajaxFinally } from '../../js/axios.config';
+import { isLocalHost } from '../../js/whichEnv';
 
 export type DinoType = { id: string; text: string; selected: boolean };
 
@@ -112,7 +113,11 @@ export const DinosSlice = createSlice({
 
     builder.addCase(loadDinos.rejected, (state: DinoState) => {
       state.loading = false;
-      state.error = 'There was an error loading the dinosaurs.';
+      let error = 'There was an error loading the dinosaurs.';
+      if (isLocalHost()) {
+        error = `${error} This may most likely due that you are serving this as localhost and there is CORS restriction on the api endpoint ${dinoAPI.url()}.  Try running 'npm run start:mock' to use a mocked endpoint.`;
+      }
+      state.error = error;
     });
   },
 });

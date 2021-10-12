@@ -10,16 +10,17 @@ In order to keep the project organized, the project has the following structure:
 - `/.env` => Global variables available to the application. These variables are set at build time.
 - `/public` => Static files used by the application but not imported. Normally a parent html file and the .ico file
 
-  - `/public/__fixtues__` => Static json files returned during an ajax call when the application is run in "mock" mode. Note: These files are not included in the built version of the application.
+  - `/public/__fixtures__` => Static json files returned during an ajax call when the application is run in "mock" mode. Note: These files are not included in the built version of the application.
 
 - `/src` => All files used by the application and for testing
 
   - `/src/__mocks__` => Files called instead of a package during the unit tests
   - `/src/__tests__` => Jest test files. Note: there should be a file for each .jsx and .js file inside the `src` directory.
 
-    - `/src/__test_fixtures__` => Fixture files used during unit tests
-    - `/src/SAMPLE_REDUX.test.tsx` => Start of a test for a component that is connected to the redux store. This can be used as a template.
-    - `/src/SAMPLE.test.tsx` => Start of a test for a component that is not connected to the redux store. This can be used as a template.
+    - `/src/__tests__/SAMPLE_REDUX.test.tsx` => Start of a test for a component that is connected to the redux store. This can be used as a template.
+    - `/src/__tests__/SAMPLE.test.tsx` => Start of a test for a component that is not connected to the redux store. This can be used as a template.
+
+  - `/src/__test_fixtures__` => Fixture files used during unit tests
 
   - `/src/components` => Child and leaf components. In larger projects, there may be sub folders
 
@@ -34,9 +35,16 @@ In order to keep the project organized, the project has the following structure:
     - `/src/js/whichEnv.ts` => Helper methods to determine what environment the application is running in based in url patterns.
   - `/src/pages` => High level components that are called by the router
   - `/src/scss` => Contains application-wide (aka theming ) scss.
+
     - `/src/scss/_variables.scss` => Overrides of Bootstrap main variables
     - `/src/scss/_custom.scss` => Custom css rules. Note this should be application-wide rules
     - `/src/scss/index.scss` => List of Bootstrap includes. Disable any scss for Bootstrap features that are not in use
+
+  - `/src/redux` => Contains files related to the redux store
+    - `/src/redux/store.ts` => Creates the redux store. There normally isn't a need to modify this file
+    - `/src/redux/reducers` => Contains reducers used to put information into the redux store
+      - `/src/redux/reducers/index.ts` => Calls all the separate reducer files and connects them to the store.
+    - `/src/selectors` => Contains selector files to pull information out of the store.
   - `/src/App.tsx` => Contains any items that should be on all "pages" including header and footers
   - `/src/AppNavBar.tsx` => Main navigation bar for the entire application
   - `/src/AppRouteNames.ts` => Lists all the routes so they can imported into both the AppRoutes and AppNavBar files.
@@ -45,8 +53,6 @@ In order to keep the project organized, the project has the following structure:
 
 - `/DOCKER_DEV_ENV` => Files to develop inside a docker container.
   - `/DOCKER_DEV_ENV/README.md` => Directions on how to set up and run a docker container for development
-- `/GETTING_STARTED` => Files on how to get started and set-up a development environment
-
 - `/GETTING_STARTED` => Files on how to get started and set-up a development environment
 
 ---
