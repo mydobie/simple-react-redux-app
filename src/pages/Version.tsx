@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // Page that shows the application name and version from package.json file
 // Along with the git commit.
 // Note this file should be used in most applications
@@ -27,6 +28,19 @@ const Version = (/* props */): ReactElement => (
           <li>
             <strong>Git Commit: </strong>
             <span id='gitCommitHash'>{process.env.REACT_APP_GIT_SHA}</span>
+          </li>
+          <li>
+            <strong>State persists on refresh: </strong>
+            {process.env.REACT_APP_USE_LOCAL_STORAGE
+              ? process.env.REACT_APP_USE_LOCAL_STORAGE
+              : 'false'}
+          </li>
+        </ul>
+        <h2>Dependencies</h2>
+        <ul>
+          <li>
+            <strong>React: </strong>
+            {React.version}
           </li>
         </ul>
       </Col>
