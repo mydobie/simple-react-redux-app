@@ -11,6 +11,7 @@
 # production
 /build
 /archive
+/public/versions.json
 
 # misc
 .DS_Store
@@ -19,6 +20,7 @@
 .env.test.local
 .env.production.local
 TODO
+TODO.md
 .eslintcache
 .vscode
 .env.development
