@@ -81,7 +81,9 @@ const UniversityPage = (): ReactElement => {
         {!loading ? (
           <ul>
             {univList.map((university) => (
-              <li key={university}>{university}</li>
+              <li key={university} data-testid='uniListItem'>
+                {university}
+              </li>
             ))}
           </ul>
         ) : null}
