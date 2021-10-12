@@ -12,6 +12,14 @@ export const dinoAPI = {
       : `http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=${numberOfDinos}`,
 };
 
+export const universitiesAPI = {
+  method: (): Method => 'get',
+  url: (): string =>
+    process.env.REACT_APP_USE_MOCKS === 'true'
+      ? `/__fixtures__/universities.json` // NOTE: `__fixtures__` is the  `/public/__fixtures__` directory.
+      : `http://universities.hipolabs.com/search?name=minnesota&country=united+states`,
+};
+
 export const ajaxFinally = async (
   func: () => void = () => {},
   timeout = 3000,

@@ -35,6 +35,16 @@ const AppNavBar = (): ReactElement => (
         <NavLink
           activeClassName='active'
           className='nav-link'
+          to={ROUTES.UNIVERSITIES}
+        >
+          MN Universities
+        </NavLink>
+      </Nav.Item>
+
+      <Nav.Item>
+        <NavLink
+          activeClassName='active'
+          className='nav-link'
           to={ROUTES.REDIRECT}
         >
           Redirect

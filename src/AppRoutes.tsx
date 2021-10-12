@@ -12,6 +12,7 @@ import Dino from './pages/Dino';
 import Version from './pages/Version';
 import Color from './pages/ColorPage';
 import Redirect from './pages/RedirectPage';
+import University from './pages/UniversityPages';
 import FourOhFour from './pages/FourOhFour';
 
 const AppRoutes = (): ReactElement => (
@@ -36,6 +37,9 @@ const AppRoutes = (): ReactElement => (
 
       <Route path={ROUTES.REDIRECT}>
         <Redirect />
+      </Route>
+      <Route path={ROUTES.UNIVERSITIES}>
+        <University />
       </Route>
 
       <Route path={ROUTES.VERSION}>

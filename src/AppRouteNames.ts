@@ -5,4 +5,5 @@ export default {
   DINO: '/dino',
   COLOR: '/color',
   REDIRECT: '/redirect',
+  UNIVERSITIES: '/universities',
 };
