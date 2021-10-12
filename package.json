@@ -69,7 +69,9 @@
     "See https://www.npmjs.com/package/npm-force-resolutions"
   ],
   "resolutions": {
-    "glob-parent": "5.1.2"
+    "glob-parent": "5.1.2",
+    "set-value": "4.0.1",
+    "immer": "9.0.6"
   },
   "scripts": {
     "d": "npm i",
@@ -77,6 +79,7 @@
     "start": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
     "start:mock": "REACT_APP_USE_MOCKS=true npm run start",
     "// ----------------------------------------------------------1": "",
+    "buildts": "tsc --project tsconfig-build-files.json",
     "build": "npm run d && npm run test && npm run npmAudit && npm run build:ci",
     "build:ci": "REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
     "test": "react-scripts test --coverage --passWithNoTests --testPathIgnorePatterns /helpers --watchAll=false ",
@@ -98,6 +101,7 @@
     "lint:scss:fix:all": "npm run lint:scss -- --fix './**/*.+(css|scss)'",
     "// ----------------------------------------------------------4": "",
     "clean": "rm -rf node_modules && rm -f package-lock.json && npm run d",
+    "uglify": "uglifyjs ",
     "checkCoverage": "node ./utils/testCoverage.js",
     "createTar": "node ./utils/createArchive.js",
     "npmAudit": "npm audit -audit-level high",

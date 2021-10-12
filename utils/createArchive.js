@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // This file is used to create a tar file that can be stored in Artifactory
-// It is not used by the React application
-
 /* eslint-disable no-console */
 const { exec } = require('child_process');
 
@@ -9,17 +7,18 @@ const fs = require('fs');
 
 const packagedata = fs.readFileSync('package.json');
 const packageJson = JSON.parse(packagedata);
-const { version, name } = packageJson;
+const { version /* , name */ } = packageJson;
+// const fileName = `${name.replace('/', '--')}-${version}.tgz`;
 
-const fileName = `${name}-${version}.tgz`;
+const fileName = `simple-react-redux-app-built-files-${version}.tgz`;
 
 const archiveDirectory = 'archive/'; // Note, trailing / is required.  set to '' to save at the root of the project
 
 console.log('Starting archive process.  This can take a while.');
+
 exec(
   `npm run build && mkdir -p ${archiveDirectory} && cd build && tar --exclude='./__fixtures__' -cvzf ../${archiveDirectory}${fileName} .`,
-  // eslint-disable-next-line no-unused-vars
-  (err /*, stdout, stderr */) => {
+  (err /* , stdout, stderr */) => {
     if (err) {
       // some err occurred
       console.error(`File not created. ERROR:${err}`);
