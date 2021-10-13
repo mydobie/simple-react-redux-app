@@ -1,17 +1,15 @@
 import React, { ReactElement } from 'react';
 
 import { Row, Col } from 'react-bootstrap';
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import DinoListItem from '../components/DinoListItem';
 import DinoList from '../components/DinoList';
-import { RootState } from '../redux/store';
 
 import {
-  getDinosSelector,
-  getDinoErrorSelector,
-  isDinosLoadingSelector,
+  useGetDinos,
+  useGetDinoErrors,
+  useIsDinoLoading,
 } from '../redux/selectors/dinos';
 
 import Errors from '../components/Alert';
@@ -20,16 +18,9 @@ import { DinoType, loadDinos, setDinoSelection } from '../redux/reducers/dinos';
 
 const SampleDinoPage = (): ReactElement => {
   // EXAMPLE: Calling a selector
-  const dinos: DinoType[] = useSelector((state: RootState) =>
-    getDinosSelector(state)
-  );
-  const error: string | null = useSelector((state: RootState) =>
-    getDinoErrorSelector(state)
-  );
-
-  const loading: boolean = useSelector((state: RootState) =>
-    isDinosLoadingSelector(state)
-  );
+  const dinos: DinoType[] = useGetDinos();
+  const error: string | null = useGetDinoErrors();
+  const loading: boolean = useIsDinoLoading();
 
   const dispatch = useDispatch();
 

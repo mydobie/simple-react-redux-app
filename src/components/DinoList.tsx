@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { getSelectedDinosSelector } from '../redux/selectors/dinos';
+
+import { useGetSelectedDinos } from '../redux/selectors/dinos';
 
 // EXAMPLE: Using styled-components
 const Li = styled.li`
@@ -13,7 +13,7 @@ const Li = styled.li`
 `;
 
 const DinoList = (): ReactElement => {
-  const selectedDinos = useSelector(getSelectedDinosSelector);
+  const selectedDinos = useGetSelectedDinos();
   return (
     <div>
       <Row>
