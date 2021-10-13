@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { axe } from 'jest-axe';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { universitiesAPI } from '../../js/axios.config';
@@ -29,11 +29,12 @@ describe('Sample Universities Page component tests', () => {
 
   test('Component is accessible after loading', async () => {
     mock.onGet(universitiesAPI.url()).replyOnce(200, mockUniversities);
-    const { container } = render(<UniversitiesPage />);
-
-    const results = await axe(container);
-    expect(screen.queryByTestId('Loading')).not.toBeInTheDocument();
-    expect(results).toHaveNoViolations();
+    await act(async () => {
+      const { container } = render(<UniversitiesPage />);
+      const results = await axe(container);
+      expect(screen.queryByTestId('Loading')).not.toBeInTheDocument();
+      expect(results).toHaveNoViolations();
+    });
   });
 
   test('Error is shown if there is an error getting universities', async () => {
