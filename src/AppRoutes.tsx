@@ -26,10 +26,9 @@ const AppRoutes = (): ReactElement => (
         <Dino />
       </Route>
 
-      {/* EXAMPLE Route with values in url 
-              NOTE: the ? marks an optional value */}
+      {/* EXAMPLE Route with values in url */}
       <Route
-        path={`${ROUTES.COLOR}/:colorName?`}
+        path={ROUTES.COLOR('colorName')}
         render={(colorprops) => (
           <Color startingColor={colorprops.match.params.colorName || ''} />
         )}

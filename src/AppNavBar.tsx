@@ -25,7 +25,7 @@ const AppNavBar = (): ReactElement => (
         <NavLink
           activeClassName='active'
           className='nav-link'
-          to={ROUTES.COLOR}
+          to={ROUTES.COLOR()}
         >
           Color Page (Simple form)
         </NavLink>
