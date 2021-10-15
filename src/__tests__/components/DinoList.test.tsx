@@ -4,7 +4,6 @@
 import { Provider } from 'react-redux';
 import configureStore, { MockStoreEnhanced } from 'redux-mock-store';
 import { axe } from 'jest-axe';
-// @ts-ignore
 import { render, screen } from '@testing-library/react';
 import DinoList from '../../components/DinoList';
 

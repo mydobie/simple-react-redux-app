@@ -62,6 +62,7 @@ const SampleDinoPage = (): ReactElement => {
       </Row>
       <Row>
         <Col>
+          {/* EXAMPLE: Using conditional display logic (aka show if) */}
           {!loading && error ? <Errors>{error}</Errors> : null}
           {loading ? <Loading /> : null}
           {!loading && !error ? (

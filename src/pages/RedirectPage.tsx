@@ -1,7 +1,7 @@
 /* NOTE:
 
 There are two ways to automatically direct a user to a given route:
-1. Use History Hook (only works on function based components)
+1. Use History Hook 
 2. Use redirect component (less ideal)
 */
 
@@ -19,6 +19,7 @@ const RedirectPage = (): ReactElement => {
 
   useEffect(() => {
     if (count <= 0) {
+      // EXAMPLE: Automatically forwarding to a route (without a button click)
       // For method 1
       return history.push(ROUTES.HOME);
       return;
@@ -45,7 +46,6 @@ const RedirectPage = (): ReactElement => {
           {/* Redirect component only used in method 2 */}
           {/* {count <= 0 ? <Redirect to={ROUTES.HOME} /> : null} */}
           <p>
-            {/* Link to route */}
             <Link to={ROUTES.HOME}>Go to home page</Link>
           </p>
           <p>

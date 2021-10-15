@@ -90,7 +90,6 @@ export const DinosSlice = createSlice({
     resetDinoStore: () => initialState,
   },
 
-  // @ts-ignore
   extraReducers: (builder) => {
     builder.addCase(
       loadDinos.fulfilled,

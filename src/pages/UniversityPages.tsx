@@ -18,6 +18,7 @@ type UniversityType = {
   web_pages?: string[];
 };
 
+// EXAMPLE: Displaying result of ajax call to screen
 const RawJSON = ({ json }: { json: string }): ReactElement => (
   <Card>
     <Card.Header>Returned JSON</Card.Header>
@@ -41,12 +42,15 @@ const UniversityPage = (): ReactElement => {
       setRaw(null);
       setUnivList([]);
       try {
+        //  EXAMPLE: Ajax call in non-redux file
         const axiosConfig: AxiosRequestConfig = {
-          url: universitiesAPI.url(),
+          url: universitiesAPI.url(), // EXAMPLE: Use of Ajax url and method helper
           method: universitiesAPI.method(),
           cancelToken: source.token,
         };
         const response = await axios(axiosConfig);
+
+        // EXAMPLE: Use of ajaxFinally helper
         await ajaxFinally();
         if (response.data) {
           const universities = response.data.map(

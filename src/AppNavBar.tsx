@@ -6,6 +6,7 @@ import { Nav } from 'react-bootstrap';
 
 import ROUTES from './AppRouteNames';
 
+// EXAMPLE: Navigation bar
 const AppNavBar = (): ReactElement => (
   <nav>
     <Nav>

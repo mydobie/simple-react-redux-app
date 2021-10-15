@@ -44,4 +44,7 @@ describe('Loading icon tests', () => {
     expect((mockChangeCheckbox.mock.calls[0] as string[])[0]).toBe('4');
     expect((mockChangeCheckbox.mock.calls[0] as boolean[])[1]).toBe(true); // second attribute sent
   });
+
+  // EXAMPLE: A todo/pending test
+  test.todo('This a place holder to remind you to write a test later');
 });

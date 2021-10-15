@@ -19,6 +19,7 @@ describe('Sample Universities Page component tests', () => {
 
   test('Component is accessible when loading', async () => {
     process.env.REACT_APP_USE_MOCKS = 'true';
+    // EXAMPLE: Mocking an ajax call
     mock.onGet(universitiesAPI.url()).reply(200, mockUniversities);
     const { container } = render(<UniversitiesPage />);
     const results = await axe(container);

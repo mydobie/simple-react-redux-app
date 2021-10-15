@@ -11,6 +11,7 @@ const DinoListItem = ({
   dinoName: string;
   dinoId: string;
   checked: boolean;
+  // EXAMPLE: Passing a function as a prop (so data bubbles to parent)
   changeCheckBox: (dinoId: string, isChecked: boolean) => void;
   testid?: string;
 }): ReactElement => (
