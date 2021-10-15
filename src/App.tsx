@@ -2,7 +2,7 @@
 
 import React, { ReactElement } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
-import { Container } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 // START FEATURE FLAGS
@@ -16,22 +16,32 @@ import SetAxios from './components/SetAxios';
 
 import './scss/index.scss';
 
+const Header = (): ReactElement => (
+  <header>
+    <Card bg='dark' text='white'>
+      <Card.Body>
+        <Card.Title>Sample redux application</Card.Title>
+      </Card.Body>
+    </Card>
+  </header>
+);
+
 // eslint-disable-next-line arrow-body-style
 const Footer = (): ReactElement => {
   // EXAMPLE: Show/Hide based on feature flag
   const isColors = useSelector((state) => isFeatureActive('COLORS', state));
   return (
-    <>
-      <p>
+    <footer>
+      <Card bg='light' style={{ marginTop: '20px' }}>
         {isColors ? (
           <>
-            <strong>Colors:</strong> Red, Orange, Yellow, Green, Blue, Violet
+            <Card.Body>
+              <strong>Colors:</strong> Red, Orange, Yellow, Green, Blue, Violet
+            </Card.Body>
           </>
-        ) : (
-          ' '
-        )}
-      </p>
-    </>
+        ) : null}
+      </Card>
+    </footer>
   );
 };
 
@@ -52,6 +62,7 @@ const App = (): ReactElement => {
     <>
       <Router basename={basename}>
         <SetAxios />
+        <Header />
         <AppNavBar />
         <Container>
           <main>
