@@ -45,7 +45,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # See utils/createArchive.js for the directory and name of file
-          file: archive/simple-react-app-built-files-${{ steps.package-version.outputs.current-version}}.tgz
+          file: archive/simple-react-redux-app-built-files-${{ steps.package-version.outputs.current-version}}.tgz
           tag: v${{ steps.package-version.outputs.current-version}}
 
       - name: Build pages
