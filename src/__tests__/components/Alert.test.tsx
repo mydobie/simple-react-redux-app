@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
-// @ts-ignore
+
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import Alert from '../../components/Alert';

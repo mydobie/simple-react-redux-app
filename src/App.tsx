@@ -26,7 +26,6 @@ const Header = (): ReactElement => (
   </header>
 );
 
-// eslint-disable-next-line arrow-body-style
 const Footer = (): ReactElement => {
   // EXAMPLE: Show/Hide based on feature flag
   const isColors = useSelector((state) => isFeatureActive('COLORS', state));

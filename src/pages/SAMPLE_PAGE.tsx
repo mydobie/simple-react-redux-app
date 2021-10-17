@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 // *** Import selectors ***
 
@@ -10,8 +10,7 @@ import { useDispatch } from 'react-redux';
 
 // *** Main component ***
 const SamplePage = (): ReactElement => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // *** Selectors ***
   // const items: SampleItemType[] = useGetItems();

@@ -58,3 +58,7 @@ To make examples easier to find, all examples are preceded with a comment starti
 
 ## Which Env
  - Use which env methods to determine what is displayed
+
+
+ ## Future Examples (examples to implement in future examples)
+ - Call reducer on button click

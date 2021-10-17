@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 // The purpose is to make an ajax and store state call WITHOUT redux
 // Copy what ever is done for the non-redux dinos page
 import React, { ReactElement, useState, useEffect } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+
 import { universitiesAPI, ajaxFinally } from '../js/axios.config';
-// import { isLocalHost } from '../js/whichEnv';
 import Alert from '../components/Alert';
 import Loading from '../components/Loading';
 
+// ** Main component type */
 type UniversityType = {
   domains?: string[];
   name: string;
@@ -28,6 +28,7 @@ const RawJSON = ({ json }: { json: string }): ReactElement => (
   </Card>
 );
 
+// *** Main component ***
 const UniversityPage = (): ReactElement => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null); // string or null

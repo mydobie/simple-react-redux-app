@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 // *********************** GET ENVIRONMENT BASED ON URL ************************* //
 // Add non-prod environments here:
 
@@ -41,6 +40,7 @@ export const whichEnvString = (): string => {
 const isEnv = (envType: string): boolean => {
   const host = window.location.hostname;
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   if (!envTypes[envType]) {
     // eslint-disable-next-line no-console

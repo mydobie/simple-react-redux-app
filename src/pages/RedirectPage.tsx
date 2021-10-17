@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 
 import ROUTES from '../AppRouteNames';
 
+// *** Main component ***
 const RedirectPage = (): ReactElement => {
   const history = useHistory();
   const [count, setCount] = useState(5);

@@ -1,21 +1,19 @@
 import React, { ReactElement } from 'react';
-
 import { Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
 import DinoListItem from '../components/DinoListItem';
 import DinoList from '../components/DinoList';
-
 import {
   useGetDinos,
   useGetDinoErrors,
   useIsDinoLoading,
 } from '../redux/selectors/dinos';
-
 import Errors from '../components/Alert';
 import Loading from '../components/Loading';
 import { DinoType, loadDinos, setDinoSelection } from '../redux/reducers/dinos';
 
+// *** Main component ***
 const SampleDinoPage = (): ReactElement => {
   // EXAMPLE: Calling a selector
   const dinos: DinoType[] = useGetDinos();

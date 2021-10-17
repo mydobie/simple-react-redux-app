@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 // Page that shows the application name and version from package.json file
 // Along with the git commit.
 // Note this file should be used in most applications

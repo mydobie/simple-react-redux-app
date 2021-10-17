@@ -11,10 +11,12 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ROUTES from '../AppRouteNames';
 
+// ** Main component type */
 type ColorPageProps = {
   startingColor: string;
 };
 
+// *** Main component ***
 const ColorPage = ({ startingColor }: ColorPageProps): ReactElement => {
   const acceptedColors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
 
@@ -60,6 +62,7 @@ const ColorPage = ({ startingColor }: ColorPageProps): ReactElement => {
     return isValid === true ? <Link to={ROUTES.HOME}>{button}</Link> : button;
   };
 
+  // *** Return ***
   return (
     <>
       <Row>

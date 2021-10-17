@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
 
-// @ts-ignore
 import { render, fireEvent } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import DinoListItem from '../../components/DinoListItem';

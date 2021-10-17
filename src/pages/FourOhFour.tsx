@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 // EXAMPLE: Include an image
 import notFoundImage from '../images/page_not_found.svg';
 
+// *** Main component ***
 const FourOhFour = (/* props */): ReactElement => (
   <Row data-testid='404PageContainer'>
     <Col>

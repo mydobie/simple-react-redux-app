@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /*
 Reducers update the redux store.
 
@@ -30,7 +29,6 @@ export const initialState: DinoState = {
 // EXAMPLE: Side action (aka aside action with a ajax call)
 export const loadDinos = createAsyncThunk(
   'dinos/loadDinos',
-  // @ts-ignore
   async (_, { rejectWithValue }) => {
     try {
       const axiosConfig: AxiosRequestConfig = {
@@ -47,6 +45,7 @@ export const loadDinos = createAsyncThunk(
         selected: false,
       }));
     } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       return rejectWithValue(err.response.data);
     }

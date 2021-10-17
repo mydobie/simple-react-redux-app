@@ -6,6 +6,7 @@ import React, { ReactElement } from 'react';
 import axios from 'axios';
 // import { useHistory, useLocation } from 'react-router-dom';
 
+// ** Main component type */
 interface Props {
   clearError?: () => void;
   setError?: (error?: string) => void;
@@ -13,6 +14,8 @@ interface Props {
   testResponse?: (response: any) => void; // this is only used to test SetAxios
   testMode?: boolean;
 }
+
+// *** Main component ***
 const SetAxios = ({
   clearError = () => {},
   setError = () => {},

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';

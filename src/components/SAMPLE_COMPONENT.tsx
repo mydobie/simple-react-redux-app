@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import {} from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 
 // *** Import selectors ***
 
@@ -8,17 +8,14 @@ import { useDispatch } from 'react-redux';
 
 // *** Import components ***
 
-// *** Main component ***
-
-//** Main component prop type */
+// ** Main component type */
 // eslint-disable-next-line @typescript-eslint/ban-types
 type SampleComponentType = {};
 
 // *** Main component ***
 // eslint-disable-next-line no-empty-pattern
 const SampleComponent = ({}: SampleComponentType): ReactElement => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // *** Selectors ***
   // const items: SampleItemType[] = useGetItems();
@@ -36,6 +33,7 @@ const SampleComponent = ({}: SampleComponentType): ReactElement => {
     };
   }, []);
 
+  // *** Return ***
   return (
     <div data-testid='componentContent'>
       {/* Component content */}

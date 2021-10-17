@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-// EXAMPLE: Alert component
 /* 
 This component takes errors, warnings, or success messages
 */
@@ -7,6 +5,7 @@ This component takes errors, warnings, or success messages
 import React, { ReactElement } from 'react';
 import { Alert } from 'react-bootstrap';
 
+// ** Main component types */
 export type ErrorType =
   | 'primary'
   | 'secondary'
@@ -17,28 +16,31 @@ export type ErrorType =
   | 'light'
   | 'dark';
 
+type ErrorComponentProps = {
+  errorArray?: string[];
+  children?: ReactElement | string | null;
+  title?: string;
+  type?: ErrorType;
+  displayAsHTML?: boolean;
+};
+
+// *** Main component ***
 const Errors = ({
   errorArray = [],
   children = null,
   title = '',
   type = 'danger',
   displayAsHTML = false,
-}: {
-  errorArray?: string[];
-  children?: ReactElement | string | null;
-  title?: string;
-  type?: ErrorType;
-  displayAsHTML?: boolean;
-}): ReactElement => {
+}: ErrorComponentProps): ReactElement => {
   const buildFromArray = errorArray.map((error, index) =>
     displayAsHTML === true ? (
-      // eslint-disable-next-line react/no-danger
       <li key={index} dangerouslySetInnerHTML={{ __html: error }} />
     ) : (
       <li key={index}>{error}</li>
     )
   );
 
+  // *** Return ***
   return (
     <Alert variant={type} data-testid='alertError'>
       {title !== '' ? <h2 className='alertTitle'>{title}</h2> : null}

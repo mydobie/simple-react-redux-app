@@ -3,8 +3,8 @@
 
 import React, { ReactElement } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
-import Loading from '../components/Loading';
 
+// *** Main component ***
 const Home = (): ReactElement => (
   <Row data-testid='homePageContainer'>
     <Col>
@@ -18,8 +18,6 @@ const Home = (): ReactElement => (
         This project can be used as template when starting other React/Redux
         projects.
       </p>
-      <p>This is what the loading icon will look like:</p>
-      <Loading>We are loading data</Loading>
     </Col>
   </Row>
 );

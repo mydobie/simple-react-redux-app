@@ -51,6 +51,7 @@ const AppRoutes = (): ReactElement => (
         <Version />
       </Route>
 
+      {/* EXAMPLE: Use which env methods to determine what is displayed */}
       {!isProd() ? (
         <Route path={ROUTES.FEATURE_FLAGS}>
           {/* EXAMPLE: Feature flag UI */}
