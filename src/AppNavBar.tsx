@@ -5,20 +5,37 @@ import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 
 import ROUTES from './AppRouteNames';
+import { isProd } from './js/whichEnv';
+
+const activeClass = (isActive: boolean) =>
+  `nav-link ${isActive ? 'active' : ''}`;
 
 const AppNavBar = (): ReactElement => (
   <nav>
     <Nav>
       <Nav.Item>
-        <NavLink activeClassName='active' className='nav-link' to={ROUTES.HOME}>
+        <NavLink
+          className={({ isActive }) => activeClass(isActive)}
+          to={ROUTES.HOME}
+        >
           Home
         </NavLink>
       </Nav.Item>
 
+      {!isProd() ? (
+        <Nav.Item>
+          <NavLink
+            className={({ isActive }) => activeClass(isActive)}
+            to={ROUTES.FEATURE_FLAGS}
+          >
+            Feature flags
+          </NavLink>
+        </Nav.Item>
+      ) : null}
+
       <Nav.Item>
         <NavLink
-          activeClassName='active'
-          className='nav-link'
+          className={({ isActive }) => activeClass(isActive)}
           to={ROUTES.VERSION}
         >
           Version
