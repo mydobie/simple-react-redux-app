@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// This file is used to create a tar file that can be stored in Artifactory
+// This file is used to create a tar file of the built application
 /* eslint-disable no-console */
 const { exec } = require('child_process');
 

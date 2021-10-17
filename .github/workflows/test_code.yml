@@ -30,4 +30,4 @@ jobs:
         run: npm run npmAudit
 
       - name: Can module be built
-        run: bash  utils/buildPackage.sh
+        run: npm run build:ci
