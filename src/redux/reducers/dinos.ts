@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /*
-
 Reducers update the redux store.
 
 NOTE: This should be a separate reducer file for each subset of data to be saved in the redux store.
 The number of subsets will vary greatly per project
 
 */
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { dinoAPI, ajaxFinally } from '../../js/axios.config';
 import { isLocalHost } from '../../js/whichEnv';
@@ -39,7 +38,8 @@ export const loadDinos = createAsyncThunk(
         method: dinoAPI.method(),
       };
 
-      const response = await axios(axiosConfig);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const response: AxiosResponse<any> = await axios(axiosConfig);
       await ajaxFinally();
       return response.data[0].map((dino: string, index: number) => ({
         id: index,

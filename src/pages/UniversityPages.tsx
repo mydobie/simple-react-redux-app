@@ -3,7 +3,7 @@
 // Copy what ever is done for the non-redux dinos page
 import React, { ReactElement, useState, useEffect } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { universitiesAPI, ajaxFinally } from '../js/axios.config';
 // import { isLocalHost } from '../js/whichEnv';
 import Alert from '../components/Alert';
@@ -48,7 +48,8 @@ const UniversityPage = (): ReactElement => {
           method: universitiesAPI.method(),
           cancelToken: source.token,
         };
-        const response = await axios(axiosConfig);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const response: AxiosResponse<any> = await axios(axiosConfig);
 
         // EXAMPLE: Use of ajaxFinally helper
         await ajaxFinally();

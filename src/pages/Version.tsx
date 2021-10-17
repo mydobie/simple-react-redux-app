@@ -5,7 +5,7 @@
 // Normally there isn't a need to modify it
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { FeatureFlagsReduxUI } from 'feature-flags';
 
 const Version = (/* props */): ReactElement => {
@@ -21,7 +21,8 @@ const Version = (/* props */): ReactElement => {
           method: 'get',
           cancelToken: source.token,
         };
-        const response = await axios(axiosConfig);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const response: AxiosResponse<any> = await axios(axiosConfig);
 
         if (response.data) {
           const versions = response.data;
