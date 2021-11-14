@@ -32,7 +32,6 @@ const AppNavBar = (): ReactElement => (
           </NavLink>
         </Nav.Item>
       ) : null}
-
       <Nav.Item>
         <NavLink
           className={({ isActive }) => activeClass(isActive)}
