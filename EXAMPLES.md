@@ -12,7 +12,7 @@ To make examples easier to find, all examples are preceded with a comment starti
 - Linking to a route the application (prevents page reload)
 - Automatically forwarding to a route (without a button click)
 
- ## React basics
+## React basics
 
 - Include an image
 - Ajax call in non-redux file
@@ -23,6 +23,7 @@ To make examples easier to find, all examples are preceded with a comment starti
 - Using conditional display logic (aka show if)
 - Inline CSS styles
 - Using styled-components
+- Custom hook
 
 ## React-Bootstrap
 
@@ -57,8 +58,9 @@ To make examples easier to find, all examples are preceded with a comment starti
 - Show/Hide based on feature flag
 
 ## Which Env
- - Use which env methods to determine what is displayed
 
+- Use which env methods to determine what is displayed
 
- ## Future Examples (examples to implement in future examples)
- - Call reducer on button click
+## Future Examples (examples to implement in future examples)
+
+- Call reducer on button click
