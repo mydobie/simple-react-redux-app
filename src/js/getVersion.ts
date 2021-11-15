@@ -4,14 +4,16 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 // EXAMPLE: Custom hook
 export const useGetVersion = (
   getVersionsConfig: AxiosRequestConfig | null = null
-): { [key: string]: string } => {
+): [{ [key: string]: string }, boolean] => {
   const [version, setVersion] = React.useState<{ [key: string]: string }>({});
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
     const { CancelToken } = axios;
     const source = CancelToken.source();
     const getVersions = async () => {
       try {
+        setIsLoading(true);
         const axiosConfig = getVersionsConfig || {
           url: '/versions.json',
           method: 'get',
@@ -30,6 +32,8 @@ export const useGetVersion = (
       } catch (_error) {
         // eslint-disable-next-line no-console
         console.error('Error finding versions file');
+      } finally {
+        setIsLoading(false);
       }
     };
     getVersions();
@@ -39,5 +43,5 @@ export const useGetVersion = (
     };
   }, [getVersionsConfig]);
 
-  return version;
+  return [version, isLoading];
 };
