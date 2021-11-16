@@ -75,7 +75,7 @@
     "installDependencies": "npm run d",
     "start": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
     "start:mock": "REACT_APP_USE_MOCKS=true npm run start",
-    "buildVersionsPage": "node utils/getVersions",
+    "buildVersionsPage": "node utils/getVersions.ts",
     "// ----------------------------------------------------------1": "",
     "buildts": "npm run buildVersionsPage && tsc --project tsconfig-build-files.json",
     "build": "npm run d && npm run test && npm run npmAudit && npm run build:ci",

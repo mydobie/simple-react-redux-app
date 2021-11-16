@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // EXAMPLE: Form validation page (Select colors)
 
 /*
@@ -10,17 +11,17 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ROUTES from '../AppRouteNames';
+import { useParams } from 'react-router-dom';
 
 // ** Main component type */
-type ColorPageProps = {
-  startingColor: string;
-};
 
 // *** Main component ***
-const ColorPage = ({ startingColor }: ColorPageProps): ReactElement => {
+const ColorPage = (): ReactElement => {
   const acceptedColors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
 
-  const [color, setColor] = useState(startingColor);
+  const { colorName } = useParams();
+
+  const [color, setColor] = useState(colorName || '');
   const [isInvalid, setIsInvalid] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
@@ -46,7 +47,10 @@ const ColorPage = ({ startingColor }: ColorPageProps): ReactElement => {
   };
 
   useEffect(() => {
-    onColorChange(startingColor);
+    if (colorName) {
+      onColorChange(colorName);
+    }
+
     // Only run on component load
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
