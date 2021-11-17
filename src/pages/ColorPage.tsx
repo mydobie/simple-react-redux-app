@@ -19,7 +19,7 @@ import { useParams } from 'react-router-dom';
 const ColorPage = (): ReactElement => {
   const acceptedColors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
 
-  const { colorName } = useParams();
+  const colorName = useParams()?.colorName;
 
   const [color, setColor] = useState(colorName || '');
   const [isInvalid, setIsInvalid] = useState(false);

@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { axe } from 'jest-axe';
 
 import { MemoryRouter as Router } from 'react-router';
+import ReactRouter from 'react-router-dom';
+// import { createMemoryHistory } from 'history';
 import ColorPage from '../../pages/ColorPage';
 
 const isValidMessage = (container) =>
@@ -13,11 +15,16 @@ const isInvalidMessage = (container) =>
     "[data-testid='invalidMessage'][data-invalid='true']"
   );
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: jest.fn(),
+}));
+
 describe('Sample Color Page component tests', () => {
   test('Component is accessible onload', async () => {
     const { container } = render(
       <Router>
-        <ColorPage startingColor='' />
+        <ColorPage />
       </Router>
     );
 
@@ -51,7 +58,7 @@ describe('Sample Color Page component tests', () => {
   test('Component is accessible after valid color entry', async () => {
     const { container } = render(
       <Router>
-        <ColorPage startingColor='' />
+        <ColorPage />
       </Router>
     );
 
@@ -68,11 +75,11 @@ describe('Sample Color Page component tests', () => {
   });
 
   test('Invalid message is shown after invalid entry in url', () => {
-    const { container } = render(
-      <Router>
-        <ColorPage startingColor='notAColor' />
-      </Router>
-    );
+    jest
+      .spyOn(ReactRouter, 'useParams')
+      .mockReturnValue({ colorName: 'notAColor' });
+
+    const { container } = render(<ColorPage />);
 
     expect(screen.getByTestId('colorTextInput')).toHaveValue('notAColor');
     expect(isValidMessage(container)).not.toBeInTheDocument();
@@ -81,9 +88,10 @@ describe('Sample Color Page component tests', () => {
   });
 
   test('Valid message is shown after valid entry in url', () => {
+    jest.spyOn(ReactRouter, 'useParams').mockReturnValue({ colorName: 'RED' });
     const { container } = render(
       <Router>
-        <ColorPage startingColor='RED' />
+        <ColorPage />
       </Router>
     );
 
