@@ -52,5 +52,3 @@ describe('Redirect Page tests', () => {
     });
   });
 });
-
-// export {};

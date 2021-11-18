@@ -17,10 +17,11 @@ In order to keep the project organized, the project has the following structure:
   - `/src/__mocks__` => Files called instead of a package during the unit tests
   - `/src/__tests__` => Jest test files. Note: there should be a file for each .jsx and .js file inside the `src` directory.
 
-    - `/src/__tests__/SAMPLE_REDUX.test.tsx` => Start of a test for a component that is connected to the redux store. This can be used as a template.
-    - `/src/__tests__/SAMPLE.test.tsx` => Start of a test for a component that is not connected to the redux store. This can be used as a template.
+    - `/src/__test_fixtures__` => Fixture files used during unit tests
 
-  - `/src/__test_fixtures__` => Fixture files used during unit tests
+    - `/src/__tests__/components/SAMPLE_COMPONENT.test.tsx` => Start of a test for a component. This can be used as a template.
+
+    - `/src/__tests__/pages/SAMPLE_PAGE.test.tsx` => Start of a test for a page. This can be used as a template.
 
   - `/src/components` => Child and leaf components. In larger projects, there may be sub folders
 

@@ -1,9 +1,12 @@
 // Contains routing and any application wide items like headers, footers and navigation
 
 import React, { ReactElement } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
+import { BrowserRouter, HashRouter } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
 import { Container, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+
+const Router =
+  process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
 
 // START FEATURE FLAGS
 import { loadFeatureFlagsRedux } from 'feature-flags';
