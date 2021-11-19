@@ -44,13 +44,13 @@ VSC can be configure to highlight linting issues and fix linting issues on file 
 
 The above steps will install all the pieces, but VSC needs to be told to use Prettier to reformat on save.
 
-1.  Open any `.jsx` file
+1.  Open any `.tsx` file
 1.  Press `command` + `shift` + `p`
 1.  Select `Format Document`
 1.  Click on the `Configure` button
 1.  Select `Prettier ...`
 
-Now when you make a change and save any `.jsx` fileRepeat the above process for other file types including `.js` and `.html` files.
+Now when you make a change and save any `.tsx` fileRepeat the above process for other file types including `.ts` and `.html` files.
 
 ---
 

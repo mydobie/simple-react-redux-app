@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm run d
 
-      # Uncomment is creating an npm package
+      # Uncomment if creating an npm package
       # - name: Build package
       #   run: bash  utils/buildPackage.sh
 

@@ -9,7 +9,7 @@ const minifyFilesInDir = () => {
   const { exec } = require('child_process');
 
   fs.readdirSync(distFolder).forEach((file: string) => {
-    const regExp = /.*\.jsx?$/gim;
+    const regExp = /.*\.tsx?$/gim;
     if (regExp.test(file)) {
       exec(
         `npm run uglify -- ${distFolder}${file} -o ${distFolder}${file}`,
