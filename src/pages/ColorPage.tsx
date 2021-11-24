@@ -7,27 +7,25 @@ If the field is empty, no warning is shown and the submit button is inactive
 If the field entry is invalid, a warning is shown and the submit button is inactive
 If the field entry is valid, a confirmation message is show and the submit button is active
 */
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useState, useEffect, useCallback } from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ROUTES from '../AppRouteNames';
 import { useParams } from 'react-router-dom';
 
+const acceptedColors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
 // ** Main component type */
 
 // *** Main component ***
 const ColorPage = (): ReactElement => {
-  const acceptedColors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
-
-  const colorName = useParams()?.colorName;
+  const colorName = useParams()[ROUTES.COLOR_PARAMS.COLOR_NAME];
 
   const [color, setColor] = useState(colorName || '');
   const [isInvalid, setIsInvalid] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
   // EXAMPLE: Event listener
-  // The method is called when the text input below is changed
-  const onColorChange = (enteredColor: string): void => {
+  const onColorChange = useCallback((enteredColor) => {
     // EXAMPLE: Form field validation
     if (enteredColor === '') {
       setIsValid(false);
@@ -44,16 +42,13 @@ const ColorPage = (): ReactElement => {
       setIsInvalid(true);
     }
     setColor(enteredColor);
-  };
+  }, []);
 
   useEffect(() => {
-    if (colorName) {
-      onColorChange(colorName);
-    }
+    onColorChange(colorName || '');
 
     // Only run on component load
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [colorName, onColorChange]);
 
   const colorButton = (): ReactElement => {
     const button = (
