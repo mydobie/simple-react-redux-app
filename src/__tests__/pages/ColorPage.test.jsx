@@ -22,6 +22,7 @@ jest.mock('react-router-dom', () => ({
 
 describe('Sample Color Page component tests', () => {
   test('Component is accessible onload', async () => {
+    jest.spyOn(ReactRouter, 'useParams').mockReturnValue({});
     const { container } = render(
       <Router>
         <ColorPage />
@@ -37,9 +38,10 @@ describe('Sample Color Page component tests', () => {
   });
 
   test('Component is accessible after invalid color entry', async () => {
+    jest.spyOn(ReactRouter, 'useParams').mockReturnValue({});
     const { container } = render(
       <Router>
-        <ColorPage startingColor='' />
+        <ColorPage />
       </Router>
     );
 
@@ -56,6 +58,7 @@ describe('Sample Color Page component tests', () => {
   });
 
   test('Component is accessible after valid color entry', async () => {
+    jest.spyOn(ReactRouter, 'useParams').mockReturnValue({});
     const { container } = render(
       <Router>
         <ColorPage />
