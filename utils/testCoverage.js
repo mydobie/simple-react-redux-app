@@ -3,9 +3,7 @@
 // It is not used by the React application
 
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-var-requires */
-// @ts-ignore
 
 const testCoverage = () => {
   const path = require('path');

@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-var-requires */
-// @ts-ignore
 
 const getVersions = () => {
   const path = require('path');
