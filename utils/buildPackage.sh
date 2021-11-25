@@ -5,7 +5,7 @@ NODE_ENV=production
 rm -rf $distFolder
 # mkdir $distFolder
 npm run buildts
-node utils/resetPackageJson.ts
-node utils/minifyFilesInDir.ts
+node utils/resetPackageJson.js
+node utils/minifyFilesInDir.js
 
 npm pack ./$distFolder

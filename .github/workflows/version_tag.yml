@@ -48,7 +48,7 @@ jobs:
 
       - name: 'Add version to readme'
         if: ${{github.event.repository.name}} == 'simple-react-redux-app'
-        run: echo 'UPDATING' && node ./utils/addVersionToReadMe.ts
+        run: echo 'UPDATING' && node ./utils/addVersionToReadMe.js
 
       - name: 'Commit new Read Me'
         if: ${{github.event.repository.name}} == 'simple-react-redux-app'
