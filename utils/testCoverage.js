@@ -9,7 +9,7 @@ const testCoverage = () => {
   const path = require('path');
   const fs = require('fs');
 
-  const minimumLinesCoveredPercent = 75; // CHANGE ME to the minimum acceptable percentage of lines covered.
+  const minimumLinesCoveredPercent = 65; // CHANGE ME to the minimum acceptable percentage of lines covered.
 
   try {
     const json = JSON.parse(
