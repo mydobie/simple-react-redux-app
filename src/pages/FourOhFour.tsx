@@ -1,4 +1,4 @@
-// Page rendered when url doesn't match route in App.jsx
+// Page rendered when url doesn't match route in App.tsx
 
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';

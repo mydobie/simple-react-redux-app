@@ -2,7 +2,7 @@
 
 This file contains boilerplate text for the start of a README.
 
-Directions on how create a new app using the files in this project are located in GETTING_STARTED/README.md file.
+Directions on how create a new app using the files in this project are located in [GETTING_STARTED/README.md](GETTING_STARTED/README.md) file.
 
 ---
 
@@ -51,7 +51,7 @@ After installing dependencies, you can check to see what dependencies are out of
 
 You can check if there is any high or critical security advisories for installed dependencies by running `npm run npmAudit`.
 
-This project uses [Husky](https://github.com/typicode/husky) to automatically install Git Hooks that will check for security advisories at commit time. Commits will fail if any dependency has a high or critical security advisory. See the `.husky/pre-commit` file. This means that you cannot commit code until high or critical security advisories are resolved. This was done intentionally because resolving high or critical security advisories is always the highest priority.
+This project uses [Husky](https://github.com/typicode/husky) to automatically install Git Hooks that will check for security advisories in the `dependencies` section of `package.json` at commit time. Commits will fail if any dependency has a high or critical security advisory. See the `.husky/pre-commit` file. This means that you cannot commit code until high or critical security advisories are resolved. This was done intentionally because resolving high or critical security advisories is always the highest priority.
 
 ## Start the development server
 
@@ -93,9 +93,9 @@ This application uses [Husky](https://github.com/typicode/husky) and [lint-stage
 
 ### Build
 
-Normally a tar file with the build (production-ready) files needs to be created so it can be loaded to an artifact repository like Artifactory. To build and create a tar file of the built files run `npm run createTar`
+Normally a tar file with the built (production-ready) files needs to be created so it can be loaded to an artifact repository. To build and create a tar file of the built files run `npm run createTar`
 
-If you want to create the build (production-ready) without creating a tar file, run `npm run build` in a terminal at the root fo the project. This will create production-ready files in a `build` directory.
+If you want to create the built (production-ready) without creating a tar file, run `npm run build` in a terminal at the root of the project. This will create production-ready files in a `build` directory.
 
 ---
 
@@ -146,6 +146,4 @@ When a pull request is merged into the `main` branch, the following is automatic
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
 ---
-Based on template version 1.0.0

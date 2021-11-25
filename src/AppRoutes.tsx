@@ -1,7 +1,7 @@
 // Contains routing for entire application
 
 import React, { ReactElement } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { FeatureFlagsReduxUI } from 'feature-flags';
 import { isProd } from './js/whichEnv';
 
@@ -13,25 +13,17 @@ import FourOhFour from './pages/FourOhFour';
 
 const AppRoutes = (): ReactElement => (
   <>
-    <Switch>
-      <Route path={ROUTES.HOME} exact>
-        <Home />
-      </Route>
+    <Routes>
+      <Route path={ROUTES.HOME} element={<Home />} />
 
-      <Route path={ROUTES.VERSION}>
-        <Version />
-      </Route>
+      <Route path={ROUTES.VERSION} element={<Version />} />
 
       {!isProd() ? (
-        <Route path={ROUTES.FEATURE_FLAGS}>
-          <FeatureFlagsReduxUI />
-        </Route>
+        <Route path={ROUTES.FEATURE_FLAGS} element={<FeatureFlagsReduxUI />} />
       ) : null}
 
-      <Route path='/'>
-        <FourOhFour />
-      </Route>
-    </Switch>
+      <Route path='*' element={<FourOhFour />} />
+    </Routes>
   </>
 );
 

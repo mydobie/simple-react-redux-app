@@ -61,7 +61,7 @@ If at all possible snapshot tests (where results are compared to a previous run'
 
 Text matching tests should be avoided, the use of [testIds](https://testing-library.com/docs/queries/bytestid/) is preferred.
 
-Because of the nature of the Node, Jest, React, and Redux environment, a very high level of test coverage (at least 85% lines covered) is expected.
+Because of the nature of the Node, Jest, React, and Redux environment, a very high level of test coverage (at least 85% lines covered) is expected. See the `utils/testCoverage.js` file for minimum coverage accepted when running GitHub Actions.
 
 ---
 
