@@ -3,13 +3,13 @@
 import React, { ReactElement } from 'react';
 import { BrowserRouter, HashRouter } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
 import { Container, Card } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Router =
   process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
 
 // START FEATURE FLAGS
-import { loadFeatureFlagsRedux } from 'feature-flags';
+import { loadFeatureFlagsRedux, isFeatureActive } from 'feature-flags';
 import { featureFlagArray } from './feature-flags.config';
 // END FEATURE FLAGS
 
@@ -29,16 +29,26 @@ const Header = (): ReactElement => (
   </header>
 );
 
-const Footer = (): ReactElement => (
-  <footer>
-    <Card bg='light' style={{ marginTop: '20px' }}>
-      {/* Footer content goes here */}
-    </Card>
-  </footer>
-);
+const Footer = (): ReactElement => {
+  // EXAMPLE: Show/Hide based on feature flag
+  const isColors = useSelector((state) => isFeatureActive('COLORS', state));
+  return (
+    <footer>
+      <Card bg='light' style={{ marginTop: '20px' }}>
+        {isColors ? (
+          <>
+            <Card.Body>
+              <strong>Colors:</strong> Red, Orange, Yellow, Green, Blue, Violet
+            </Card.Body>
+          </>
+        ) : null}
+      </Card>
+    </footer>
+  );
+};
 
 const App = (): ReactElement => {
-  // START FEATURE FLAGS
+  // EXAMPLE: Load feature flags to redux store
   useDispatch()(
     loadFeatureFlagsRedux({
       features: featureFlagArray,
@@ -48,7 +58,6 @@ const App = (): ReactElement => {
         process.env.REACT_APP_FEATURE_FLAGS_PERSIST === 'true',
     })
   );
-  // END FEATURE FLAGS
 
   const basename = '';
   return (

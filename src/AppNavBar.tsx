@@ -5,10 +5,12 @@ import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 
 import ROUTES from './AppRouteNames';
+import { isProd } from './js/whichEnv';
 
 const activeClass = (isActive: boolean) =>
   `nav-link ${isActive ? 'active' : ''}`;
 
+// EXAMPLE: Navigation bar
 const AppNavBar = (): ReactElement => (
   <nav>
     <Nav>
@@ -16,11 +18,58 @@ const AppNavBar = (): ReactElement => (
         <NavLink
           className={({ isActive }) => activeClass(isActive)}
           to={ROUTES.HOME}
+          //  style={({ isActive }) => (isActive ? {textDecoration: 'underline'} : undefined)}
         >
           Home
         </NavLink>
       </Nav.Item>
 
+      <Nav.Item>
+        <NavLink
+          to={ROUTES.DINO}
+          className={({ isActive }) => activeClass(isActive)}
+        >
+          Dino (sample Redux page)
+        </NavLink>
+      </Nav.Item>
+
+      <Nav.Item>
+        <NavLink
+          className={({ isActive }) => activeClass(isActive)}
+          to={ROUTES.COLOR}
+        >
+          Color Page (Simple form)
+        </NavLink>
+      </Nav.Item>
+
+      <Nav.Item>
+        <NavLink
+          className={({ isActive }) => activeClass(isActive)}
+          to={ROUTES.UNIVERSITIES}
+        >
+          MN Universities
+        </NavLink>
+      </Nav.Item>
+
+      <Nav.Item>
+        <NavLink
+          className={({ isActive }) => activeClass(isActive)}
+          to={ROUTES.REDIRECT}
+        >
+          Redirect
+        </NavLink>
+      </Nav.Item>
+
+      {!isProd() ? (
+        <Nav.Item>
+          <NavLink
+            className={({ isActive }) => activeClass(isActive)}
+            to={ROUTES.FEATURE_FLAGS}
+          >
+            Feature flags
+          </NavLink>
+        </Nav.Item>
+      ) : null}
       <Nav.Item>
         <NavLink
           className={({ isActive }) => activeClass(isActive)}
