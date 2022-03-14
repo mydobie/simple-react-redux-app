@@ -21,7 +21,6 @@ To make examples easier to find, all examples are preceded with a comment starti
 - Form field validation
 - Using map to display items from an array
 - Using conditional display logic (aka show if)
-- Inline CSS styles
 - Using styled-components
 - Custom hook
 
@@ -64,3 +63,15 @@ To make examples easier to find, all examples are preceded with a comment starti
 ## Future Examples (examples to implement in future examples)
 
 - Call reducer on button click
+- Cypress tests
+- Calling a reducer, selector without hooks
+- Use effect - when component loads
+- Use effect - when component unloads
+- Use effect - when component updates
+
+## TODO
+
+- Verify docker still works
+- Verify that husky still works
+- Verify that build npm package still works
+- Verify that build tar works
