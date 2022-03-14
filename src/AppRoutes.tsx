@@ -2,7 +2,7 @@
 
 import React, { ReactElement } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { FeatureFlagsReduxUI } from 'feature-flags';
+import { FeatureFlagsReduxUI } from './feature-flags.config';
 import { isProd } from './js/whichEnv';
 
 import ROUTES from './AppRouteNames';

@@ -8,10 +8,13 @@ import { useDispatch } from 'react-redux';
 const Router =
   process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
 
-// START FEATURE FLAGS
-import { loadFeatureFlagsRedux, useIsFeatureActive } from 'feature-flags';
-import { featureFlagArray } from './feature-flags.config';
-// END FEATURE FLAGS
+// // START FEATURE FLAGS
+import {
+  useIsFeatureActive,
+  loadFeatureFlagsRedux,
+  FEATURE_FLAGS,
+} from './feature-flags.config';
+// // END FEATURE FLAGS
 
 import AppNavBar from './AppNavBar';
 import AppRoutes from './AppRoutes';
@@ -31,7 +34,7 @@ const Header = (): ReactElement => (
 
 const Footer = (): ReactElement => {
   // EXAMPLE: Show/Hide based on feature flag
-  const isColors = useIsFeatureActive('COLORS'); // useSelector((state) => isFeatureActive('COLORS', state));
+  const isColors = useIsFeatureActive(FEATURE_FLAGS.COLORS);
   return (
     <footer>
       <Card bg='light' style={{ marginTop: '20px' }}>
@@ -49,15 +52,10 @@ const Footer = (): ReactElement => {
 
 const App = (): ReactElement => {
   // EXAMPLE: Load feature flags to redux store
-  useDispatch()(
-    loadFeatureFlagsRedux({
-      features: featureFlagArray,
-      overrides: JSON.parse(process.env.REACT_APP_FEATURE_FLAGS ?? '[]'),
-      persist:
-        process.env.REACT_APP_USE_LOCAL_STORAGE === 'true' &&
-        process.env.REACT_APP_FEATURE_FLAGS_PERSIST === 'true',
-    })
-  );
+  const dispatch = useDispatch();
+  if (loadFeatureFlagsRedux()) {
+    dispatch(loadFeatureFlagsRedux());
+  }
 
   const basename = '';
   return (

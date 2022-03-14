@@ -4,7 +4,7 @@
 // Normally there isn't a need to modify it
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { FeatureFlagsReduxUI } from 'feature-flags';
+import { FeatureFlagsReduxUI } from '../feature-flags.config';
 import { useGetVersion } from '../js/getVersion';
 
 const Version = (/* props */): ReactElement => {

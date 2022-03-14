@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": "https://github.com/mydobie/simple-react-redux-app",
   "engines": {
-    "node": "14"
+    "node": "16"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
