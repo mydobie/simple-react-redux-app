@@ -17,7 +17,7 @@ CHANGE ME => [See app in action]()
 At the root of the project run the following commands in a terminal to verify you can perform all the development tasks:
 
 1.  Verify node is installed => `node -v`. Ensure that it is version listed in the `engines` section of the `package.json` file.
-1.  Install dependencies => `npm run d`
+1.  Install dependencies => `npm i`
 1.  Verify you can check for lint errors => `npm run lint`
 1.  Verify you can run the tests => `npm run test`
 1.  Verify you can check for security advisories => `npm run npmAudit`
@@ -43,7 +43,7 @@ Alternatively you can choose to develop this application inside a Docker contain
 
 ## Install dependencies
 
-After checking out the project, run `npm run d` in a terminal at the root of the project to install dependencies.
+After checking out the project, run `npm i` in a terminal at the root of the project to install dependencies.
 
 After installing dependencies, you can check to see what dependencies are out of date by running `npm outdated` in a terminal at the root of the project.
 
@@ -117,7 +117,7 @@ All pull requests will have the following tests run:
 
 If you want to run these tests against another branch, you can do the following at any time:
 
-1. Go to the the actions and select "Test Code".
+1. In GitHub, go to the the actions menu and select "Test Code".
 1. Click "Run workflow" drop down.
 1. Choose the branch you want to run the tests against.
 

@@ -152,7 +152,7 @@ YES:
 
 ### SCSS
 
-CSS for individual items should be saved inside the component itself. This can be done as inline CSS or use styled-components (recommended). If there is a lot of custom css needed for a component, then a separate scss file can be crated and imported.
+CSS for individual items should be saved inside the component itself using styled-components.
 
 Only application-wide styles should be added to the `src/scss` files
 

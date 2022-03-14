@@ -19,11 +19,15 @@ type UniversityType = {
 };
 
 // EXAMPLE: Displaying result of ajax call to screen
-const RawJSON = ({ json }: { json: string }): ReactElement => (
+const RawJSON = ({ json }: { json: any }): ReactElement => (
   <Card>
     <Card.Header>Returned JSON</Card.Header>
     <Card.Body>
-      <Card.Text>{json}</Card.Text>
+      <Card.Text>
+        <pre>
+          <code>{JSON.stringify(json, null, 4)}</code>
+        </pre>
+      </Card.Text>
     </Card.Body>
   </Card>
 );
@@ -93,7 +97,7 @@ const UniversityPage = (): ReactElement => {
             ))}
           </ul>
         ) : null}
-        {raw ? <RawJSON json={JSON.stringify(raw)} /> : null}
+        {raw ? <RawJSON json={raw} /> : null}
       </Row>
     </Col>
   );

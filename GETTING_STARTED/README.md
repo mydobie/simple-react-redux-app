@@ -107,17 +107,7 @@ Add items like headers and footers that you want on all pages in an application 
 
 While the use of feature flags are recommended, it doesn't always make sense to to use them. In order to keep size down, remove code that calls the feature flags.
 
-Remove code between the following comments throughout the project:
-
-```
-// START FEATURE FLAGS
-```
-
-and
-
-```
-// END FEATURE FLAGS
-```
+Modify `src/feature-flags.config.tsx` and remove references to the feature flag package.
 
 More information on how to use feature flags is available at the [feature flag repo site](https://github.com/mydobie/featureFlags).
 
