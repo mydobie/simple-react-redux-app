@@ -19,6 +19,7 @@ type UniversityType = {
 };
 
 // EXAMPLE: Displaying result of ajax call to screen
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const RawJSON = ({ json }: { json: any }): ReactElement => (
   <Card>
     <Card.Header>Returned JSON</Card.Header>

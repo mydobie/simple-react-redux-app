@@ -75,3 +75,6 @@ To make examples easier to find, all examples are preceded with a comment starti
 - Verify that husky still works
 - Verify that build npm package still works
 - Verify that build tar works
+- Axios interceptor example (show global error)
+- Copy to clipboard shortcut
+- Use of tableSorter
