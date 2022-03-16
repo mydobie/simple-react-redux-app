@@ -1,8 +1,9 @@
 // The purpose is to make an ajax and store state call WITHOUT redux
 // Copy what ever is done for the non-redux dinos page
 import React, { ReactElement, useState, useEffect } from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Button } from 'react-bootstrap';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { universitiesAPI, ajaxFinally } from '../js/axios.config';
 import Alert from '../components/Alert';
@@ -19,19 +20,31 @@ type UniversityType = {
 };
 
 // EXAMPLE: Displaying result of ajax call to screen
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const RawJSON = ({ json }: { json: any }): ReactElement => (
-  <Card>
-    <Card.Header>Returned JSON</Card.Header>
-    <Card.Body>
-      <Card.Text>
-        <pre>
-          <code>{JSON.stringify(json, null, 4)}</code>
-        </pre>
-      </Card.Text>
-    </Card.Body>
-  </Card>
-);
+const RawJSON = ({
+  json,
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  json: any;
+}): ReactElement => {
+  const [copied, setCopied] = useState(false);
+  return (
+    <Card>
+      <Card.Header>Returned JSON</Card.Header>
+      <Card.Body>
+        <Card.Text>
+          <CopyToClipboard text={json} onCopy={() => setCopied(true)}>
+            <Button variant={copied ? 'secondary' : 'primary'}>
+              {copied ? 'Copied!' : 'Copy'}
+            </Button>
+          </CopyToClipboard>
+          <pre>
+            <code>{json}</code>
+          </pre>
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+};
 
 // *** Main component ***
 const UniversityPage = (): ReactElement => {
@@ -63,7 +76,7 @@ const UniversityPage = (): ReactElement => {
           const universities = response.data.map(
             (university: UniversityType) => university.name
           );
-          setRaw(response.data);
+          setRaw(JSON.stringify(response.data, null, 4));
           setUnivList(universities);
           setError(null);
         } else {
