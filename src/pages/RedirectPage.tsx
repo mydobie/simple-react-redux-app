@@ -47,7 +47,9 @@ const RedirectPage = (): ReactElement => {
           {/* Redirect component only used in method 2 */}
           {/* {count <= 0 ? <Navigate to={ROUTES.HOME} /> : null} */}
           <p>
-            <Link to={ROUTES.HOME}>Go to home page</Link>
+            <Link to={ROUTES.HOME} data-testid='goToHomeLink'>
+              Go to home page
+            </Link>
           </p>
           <p>
             <Button
