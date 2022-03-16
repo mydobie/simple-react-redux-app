@@ -14,7 +14,10 @@ const testCoverage = () => {
   try {
     const json = JSON.parse(
       fs.readFileSync(
-        path.resolve(__dirname, '../coverage/lcov-report/coverage-summary.json')
+        path.resolve(
+          __dirname,
+          '../coverage/cypress-report/coverage-summary.json'
+        )
       )
     );
 

@@ -17,11 +17,22 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Tests
+      - name: Unit Tests
         run: npm run test
 
-      - name: Test coverage
+      - name: Unit Test coverage
         run: npm run checkCoverage
+
+      - name: Cypress tests
+        uses: cypress-io/github-action@v2.9.7
+        with:
+          build: npm run build:ci
+          start: npm run start
+          wait-on: http://localhost:3000
+          wait-on-timeout: 120
+
+      - name: Test Cypress coverage
+        run: npm run cypress:coverage && npm run checkCypressCoverage
 
       - name: Linting
         run: npm run lint
