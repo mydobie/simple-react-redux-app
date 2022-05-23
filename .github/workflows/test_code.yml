@@ -15,24 +15,13 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: npm i
+        run: npm run d
 
       - name: Unit Tests
         run: npm run test
 
-      - name: Unit Test coverage
+      - name: Unit test coverage
         run: npm run checkCoverage
-
-      - name: Cypress tests
-        uses: cypress-io/github-action@v2.9.7
-        with:
-          build: npm run build:ci
-          start: npm run start
-          wait-on: http://localhost:3000
-          wait-on-timeout: 120
-
-      - name: Test Cypress coverage
-        run: npm run cypress:coverage && npm run checkCypressCoverage
 
       - name: Linting
         run: npm run lint
@@ -42,3 +31,9 @@ jobs:
 
       - name: Can module be built
         run: npm run build:ci
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v3
+        with:
+          wait-on: 'http://localhost:3000'
+          start: npm start

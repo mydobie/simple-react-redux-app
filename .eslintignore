@@ -9,3 +9,5 @@ lint-staged.config.js
 react-router-dom.js
 /public/versions.json
 .nyc_output/out.json
+
+public/skipMenu

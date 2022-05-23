@@ -22,13 +22,7 @@ module.exports = (/* on, config */) => {
   // `config` is the resolved Cypress config
 };
 
-module.exports = (on, config) => {
-  // eslint-disable-next-line import/no-extraneous-dependencies
-  require('@cypress/code-coverage/task')(on, config);
-
-  // add other tasks to be registered here
-
-  // IMPORTANT to return the config object
-  // with the any changed environment variables
-  return config;
+module.exports = (/* on, config */) => {
+  // `on` is used to hook into various events Cypress emits
+  // `config` is the resolved Cypress config
 };
