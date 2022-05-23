@@ -62,19 +62,7 @@ To make examples easier to find, all examples are preceded with a comment starti
 
 ## Future Examples (examples to implement in future examples)
 
-- Call reducer on button click
-- Cypress tests
 - Calling a reducer, selector without hooks
-- Use effect - when component loads
-- Use effect - when component unloads
-- Use effect - when component updates
-
-## TODO
-
-- Verify docker still works
-- Verify that husky still works
-- Verify that build npm package still works
-- Verify that build tar works
-- Axios interceptor example (show global error)
-- Copy to clipboard shortcut
 - Use of tableSorter
+- Use of styled components with props
+- Use of styled components on a component
