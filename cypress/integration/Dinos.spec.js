@@ -3,6 +3,7 @@ import { interceptIndefinitely } from '../support/utils';
 
 describe('Dino page tests', () => {
   let interception;
+  // EXAMPLE: Delay response so the loading icon can be tested
   beforeEach(() => {
     interception = interceptIndefinitely(dinoAPI.url(), {
       body: [

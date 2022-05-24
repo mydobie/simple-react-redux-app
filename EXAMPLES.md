@@ -42,6 +42,7 @@ To make examples easier to find, all examples are preceded with a comment starti
 - Cypress - check accessibility
 - Cypress - Reload page
 - Cypress - type into an input
+- Delay response so the loading icon can be tested
 
 ## Feature Flags
 

@@ -30,7 +30,6 @@
     "Sass is pinned to a lower version otherwise it breaks on the bootstrap build"
   ],
   "devDependencies": {
-    "@cypress/code-coverage": "^3.9.12",
     "@cypress/instrument-cra": "^1.4.0",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/jest-dom": "^5.15.1",
