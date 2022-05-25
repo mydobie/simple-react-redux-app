@@ -6,18 +6,15 @@
 
 In addition to the base install, there are numerous extensions that will help working with React based applications easier:
 
-- [Chrome debugger for VS code](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
 - [Code Spell Check](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Formatting Toggle](https://marketplace.visualstudio.com/items?itemName=tombonnike.vscode-status-bar-format-toggle)
 - [Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
-- [NPM Dependency](https://marketplace.visualstudio.com/items?itemName=howardzuo.vscode-npm-dependency)
 - [NPM Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
-- [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 
 ---
 
@@ -43,7 +40,7 @@ The above steps will install all the pieces, but VSC needs to be told to use Pre
 1.  Click on the `Configure` button
 1.  Select `Prettier ...`
 
-Now when you make a change and save any `.tsx` fileRepeat the above process for other file types including `.ts` and `.html` files.
+Now when you make a change and save any `.tsx` file, it should format on save. Repeat the above process for other file types including `.ts`, `.js` and `.html` files.
 
 ---
 

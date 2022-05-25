@@ -6,55 +6,55 @@ This file contains directions on how to modify the files in this project when st
 
 In order to keep the project organized, the project has the following structure:
 
-- `/util` => All helper files not used directly by the the application
+- `/util/` => All helper files not used directly by the the application
 - `/.env` => Global variables available to the application. These variables are set at build time.
-- `/public` => Static files used by the application but not imported. Normally a parent html file and the .ico file
+- `/cypress/` => All files used by Cypress to run the tests
+  - `/cypress/fixtures/` => Fixture files used by the Cypress tests
+  - `/cypress/integration/` => Cypress functional tests
+- `/public/` => Static files used by the application but not imported. Normally a parent html file and the .ico file
 
-  - `/public/__fixtures__` => Static json files returned during an ajax call when the application is run in "mock" mode. Note: These files are not included in the built version of the application.
+  - `/public/__fixtures__/` => Static json files returned during an ajax call when the application is run in "mock" mode. Note: These files are not included in the built version of the application.
 
-- `/src` => All files used by the application and for testing
+- `/src/` => All files used by the application and for testing
 
-  - `/src/__mocks__` => Files called instead of a package during the unit tests
-  - `/src/__tests__` => Jest test files. Note: there should be a file for each .jsx and .js file inside the `src` directory.
+  - `/src/__mocks__/` => Files called instead of a package during the unit tests
+  - `/src/__tests__/` => Jest unit test files. Note: there should be a file for each .jsx and .js file inside the `src` directory.
 
-    - `/src/__test_fixtures__` => Fixture files used during unit tests
+    - `/src/__tests__/components/SAMPLE_COMPONENT.test.tsx` => Start of a unit test for a component. This can be used as a template.
+    - `/src/__tests__/pages/SAMPLE_PAGE.test.tsx` => Start of a unit test for a page. This can be used as a template.
 
-    - `/src/__tests__/components/SAMPLE_COMPONENT.test.tsx` => Start of a test for a component. This can be used as a template.
+  - `/src/__test_fixtures__/` => Fixture files used during unit tests
 
-    - `/src/__tests__/pages/SAMPLE_PAGE.test.tsx` => Start of a test for a page. This can be used as a template.
+  - `/src/components/` => Child and leaf components. In larger projects, there may be sub folders
 
-  - `/src/components` => Child and leaf components. In larger projects, there may be sub folders
-
-    - `/src/components/SAMPLE.tsx` => Sample component that can be used as a template.
-    - `/src/components/SAMPLE_REDUX.tsx` => Sample component connected to the redux store that can be used as a template.
+    - `/src/components/SAMPLE_COMPONENT.tsx` => Sample component that can be used as a template.
     - `/src/components/SetAxios.tsx` => File that contains code that is run before and after each ajax call.
 
-  - `/src/images` => All static images called by the components
-  - `/src/js` => Any helper .js file used by the application
+  - `/src/images/` => All static images called by the components
+  - `/src/js` => Any helper .js or .ts file used by the application
     - `/src/js/axios.config.ts` => Ajax based helper functions
     - `/src/js/helpers.ts` => Javascript helpers used across the application
     - `/src/js/whichEnv.ts` => Helper methods to determine what environment the application is running in based in url patterns.
-  - `/src/pages` => High level components that are called by the router
-  - `/src/scss` => Contains application-wide (aka theming ) scss.
+  - `/src/pages/` => High level components that are called by the router
+  - `/src/redux` => Contains files related to the redux store
+    - `/src/redux/store.ts` => Creates the redux store. There normally isn't a need to modify this file
+    - `/src/redux/reducers` => Contains reducers used to put information into the redux store
+      - `/src/redux/reducers/index.ts` => Calls all the separate reducer files and connects them to the store.
+    - `/src/redux/selectors` => Contains selector files to pull information out of the store.
+  - `/src/scss/` => Contains application-wide (aka theming ) scss.
 
     - `/src/scss/_variables.scss` => Overrides of Bootstrap main variables
     - `/src/scss/_custom.scss` => Custom css rules. Note this should be application-wide rules
     - `/src/scss/index.scss` => List of Bootstrap includes. Disable any scss for Bootstrap features that are not in use
 
-  - `/src/redux` => Contains files related to the redux store
-    - `/src/redux/store.ts` => Creates the redux store. There normally isn't a need to modify this file
-    - `/src/redux/reducers` => Contains reducers used to put information into the redux store
-      - `/src/redux/reducers/index.ts` => Calls all the separate reducer files and connects them to the store.
-    - `/src/selectors` => Contains selector files to pull information out of the store.
   - `/src/App.tsx` => Contains any items that should be on all "pages" including header and footers
   - `/src/AppNavBar.tsx` => Main navigation bar for the entire application
   - `/src/AppRouteNames.ts` => Lists all the routes so they can imported into both the AppRoutes and AppNavBar files.
   - `/src/AppRoutes.tsx` => Contains the routing for the entire application
   - `/src/index.tsx` => File that inserts React application into the HTML. This normally doesn't need to be modified
 
-- `/DOCKER_DEV_ENV` => Files to develop inside a docker container.
-  - `/DOCKER_DEV_ENV/README.md` => Directions on how to set up and run a docker container for development
-- `/GETTING_STARTED` => Files on how to get started and set-up a development environment
+- `/DOCKER_DEV_ENV/` => Files to develop inside a docker container.
+- `/GETTING_STARTED/` => Files on how to get started and set-up a development environment
 
 ---
 
@@ -107,7 +107,17 @@ Add items like headers and footers that you want on all pages in an application 
 
 While the use of feature flags are recommended, it doesn't always make sense to to use them. In order to keep size down, remove code that calls the feature flags.
 
-Modify `src/feature-flags.config.tsx` and remove references to the feature flag package.
+Remove code between the following comments throughout the project:
+
+```
+// START FEATURE FLAGS
+```
+
+and
+
+```
+// END FEATURE FLAGS
+```
 
 More information on how to use feature flags is available at the [feature flag repo site](https://github.com/mydobie/featureFlags).
 
