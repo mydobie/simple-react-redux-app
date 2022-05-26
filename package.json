@@ -76,6 +76,7 @@
     "See https://www.npmjs.com/package/npm-force-resolutions"
   ],
   "scripts": {
+    "d": "npm i",
     "start": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts -r @cypress/instrument-cra start",
     "start:mock": "REACT_APP_USE_MOCKS=true npm run start",
     "buildVersionsPage": "node utils/getVersions.js",
