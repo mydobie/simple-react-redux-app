@@ -10,22 +10,6 @@ export const sampleAPI = {
       : `http://the_real_url_for_the_api.com`,
 };
 
-export const dinoAPI = {
-  method: (): Method => 'get',
-  url: (numberOfDinos = 5): string =>
-    process.env.REACT_APP_USE_MOCKS === 'true'
-      ? `/__fixtures__/dinoipsum.json?words=${numberOfDinos}` // NOTE: `__fixtures__` is the  `/public/__fixtures__` directory.
-      : `http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=${numberOfDinos}`,
-};
-
-export const universitiesAPI = {
-  method: (): Method => 'get',
-  url: (): string =>
-    process.env.REACT_APP_USE_MOCKS === 'true'
-      ? `/__fixtures__/universities.json` // NOTE: `__fixtures__` is the  `/public/__fixtures__` directory.
-      : `http://universities.hipolabs.com/search?name=minnesota&country=united+states`,
-};
-
 /* ***************** AJAX Finally Helper ***************/
 // When set in "mock mode" the application will pause simulating a real ajax call
 

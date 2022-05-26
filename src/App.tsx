@@ -9,11 +9,7 @@ const Router =
   process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
 
 // // START FEATURE FLAGS
-import {
-  useIsFeatureActive,
-  loadFeatureFlagsRedux,
-  FEATURE_FLAGS,
-} from './feature-flags.config';
+import { loadFeatureFlagsRedux } from './feature-flags.config';
 // // END FEATURE FLAGS
 
 import AppNavBar from './AppNavBar';
@@ -32,23 +28,11 @@ const Header = (): ReactElement => (
   </header>
 );
 
-const Footer = (): ReactElement => {
-  // EXAMPLE: Show/Hide based on feature flag
-  const isColors = useIsFeatureActive(FEATURE_FLAGS.COLORS);
-  return (
-    <footer>
-      <Card bg='light' style={{ marginTop: '20px' }}>
-        {isColors ? (
-          <>
-            <Card.Body>
-              <strong>Colors:</strong> Red, Orange, Yellow, Green, Blue, Violet
-            </Card.Body>
-          </>
-        ) : null}
-      </Card>
-    </footer>
-  );
-};
+const Footer = (): ReactElement => (
+  <footer>
+    <Card bg='light' style={{ marginTop: '20px' }}></Card>
+  </footer>
+);
 
 const App = (): ReactElement => {
   // EXAMPLE: Load feature flags to redux store

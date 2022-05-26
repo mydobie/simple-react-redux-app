@@ -26,7 +26,7 @@ Add all feature flag ids as constants so it can be used across the application.
 */
 
 export const FEATURE_FLAGS = {
-  COLORS: 'COLORS', // example feature flag
+  //  COLORS: 'COLORS', // example feature flag
 };
 
 /* ****************** FEATURE FLAG  ARRAY ************** */
@@ -36,11 +36,11 @@ Add all feature flags
 
 export const featureFlagArray: [FlagType] | [] = [
   // Example feature flag
-  {
-    id: FEATURE_FLAGS.COLORS, // id used across the app for this feature
-    active: false, // should the feature be enabled?
-    description: 'A list of all the primary and secondary colors.', // description shown for this feature
-  },
+  // {
+  //   id: FEATURE_FLAGS.COLORS, // id used across the app for this feature
+  //   active: false, // should the feature be enabled?
+  //   description: 'A list of all the primary and secondary colors.', // description shown for this feature
+  // },
 ];
 
 /* ****************** FEATURE FLAG  FUNCTIONS ************** */

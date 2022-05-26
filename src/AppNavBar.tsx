@@ -24,42 +24,6 @@ const AppNavBar = (): ReactElement => (
         </NavLink>
       </Nav.Item>
 
-      <Nav.Item>
-        <NavLink
-          to={ROUTES.DINO}
-          className={({ isActive }) => activeClass(isActive)}
-        >
-          Dino (sample Redux page)
-        </NavLink>
-      </Nav.Item>
-
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.COLOR}
-        >
-          Color Page (Simple form)
-        </NavLink>
-      </Nav.Item>
-
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.UNIVERSITIES}
-        >
-          MN Universities
-        </NavLink>
-      </Nav.Item>
-
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.REDIRECT}
-        >
-          Redirect
-        </NavLink>
-      </Nav.Item>
-
       {!isProd() ? (
         <Nav.Item>
           <NavLink
