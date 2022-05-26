@@ -7,7 +7,7 @@ import { axe } from 'jest-axe';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-// import { sampleAPI } from '../../js/axios.config';
+import { sampleAPI } from '../../js/axios.config';
 import { resetStore } from '../../redux/reducers/REDUCER_TEMPLATE';
 import SAMPLE_PAGE from '../../pages/SAMPLE_PAGE';
 
@@ -23,9 +23,9 @@ describe('Component tests', () => {
 
     process.env.REACT_APP_USE_MOCKS = 'false';
     mock = new MockAdapter(axios);
-    // mock
-    //   .onGet(sampleAPI.url())
-    //   .reply(200, 'Data to be returned from ajax call');
+    mock
+      .onGet(sampleAPI.url())
+      .reply(200, 'Data to be returned from ajax call');
   });
 
   afterEach(() => {
