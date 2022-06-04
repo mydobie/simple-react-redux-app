@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import DinoListItem from '../components/DinoListItem';
 import DinoList from '../components/DinoList';
+import { AppDispatch } from '../redux/store';
 import {
   useGetDinos,
   useGetDinoErrors,
@@ -20,7 +21,7 @@ const SampleDinoPage = (): ReactElement => {
   const error: string | null = useGetDinoErrors();
   const loading: boolean = useIsDinoLoading();
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   React.useEffect(() => {
     if (dinos.length === 0) {

@@ -8,7 +8,9 @@ To make examples easier to find, all examples are preceded with a comment starti
 - Route to 404 page
 - Route with a redirect
 - Route with values in url
+- Nested routes
 - Route to a component without props
+- Route optional parameters
 - Linking to a route the application (prevents page reload)
 - Automatically forwarding to a route (without a button click)
 
@@ -56,7 +58,9 @@ To make examples easier to find, all examples are preceded with a comment starti
 
 ## Styling
 
-- Styled existing component
+- Using styled-components with existing component
+- Using styled-components with props
+- Bootstrap utility classes
 
 ## SkipMenu
 

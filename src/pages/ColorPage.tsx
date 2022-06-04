@@ -16,6 +16,7 @@ const acceptedColors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
 // *** Main component ***
 const ColorPage = (): ReactElement => {
   const colorName = useParams()[ROUTES.COLOR_PARAMS.COLOR_NAME];
+  // above is equal to: const { colorName } = useParams();
 
   const [color, setColor] = useState(colorName || '');
   const [isInvalid, setIsInvalid] = useState(false);

@@ -5,10 +5,14 @@ import styled from 'styled-components';
 // *** Import selectors ***
 import { useGetSelectedDinos } from '../redux/selectors/dinos';
 
-// EXAMPLE: Using styled-components
-const Li = styled.li`
+interface Props {
+  textColor?: string;
+}
+
+// EXAMPLE: Using styled-components with props
+const Li = styled.li<Props>`
   font-size: 20px;
-  color: #7b027b;
+  color: ${(props) => props.textColor || '#7b027b'};
   font-family: serif;
   border-bottom: 1px solid #ccc;
 `;
@@ -26,8 +30,11 @@ const DinoList = (): ReactElement => {
           <h2>Your selected Dinos:</h2>
           <ul data-testid='dinoSelectedList' style={{ margin: '30px' }}>
             {/* EXAMPLE: Using map to display items from an array */}
-            {selectedDinos.map((dino) => (
-              <Li key={dino.id}>{dino.text}</Li>
+            {selectedDinos.map((dino, index) => (
+              // Only the first item will have a custom text color
+              <Li key={dino.id} textColor={index === 0 ? '#e167e4' : undefined}>
+                {dino.text}
+              </Li>
             ))}
           </ul>
         </Col>

@@ -47,7 +47,7 @@ const AppNavBar = (): ReactElement => (
           className={({ isActive }) => activeClass(isActive)}
           to={ROUTES.UNIVERSITIES}
         >
-          MN Universities
+          Universities (Ajax)
         </NavLink>
       </Nav.Item>
 
@@ -57,6 +57,23 @@ const AppNavBar = (): ReactElement => (
           to={ROUTES.REDIRECT}
         >
           Redirect
+        </NavLink>
+      </Nav.Item>
+
+      <Nav.Item>
+        <NavLink
+          className={({ isActive }) => activeClass(isActive)}
+          to={ROUTES.FLOWERS}
+        >
+          Flowers (Tabs)
+        </NavLink>
+      </Nav.Item>
+      <Nav.Item>
+        <NavLink
+          className={({ isActive }) => activeClass(isActive)}
+          to={ROUTES.ANIMAL}
+        >
+          Animal (Nested routes)
         </NavLink>
       </Nav.Item>
 
