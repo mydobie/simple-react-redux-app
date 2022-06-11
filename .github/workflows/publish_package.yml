@@ -21,7 +21,7 @@ jobs:
           scope: '@mydobie'
 
       - name: Install dependencies
-        run: npm i
+        run: npm ci
 
       # Uncomment if creating an npm package
       # - name: Build package
