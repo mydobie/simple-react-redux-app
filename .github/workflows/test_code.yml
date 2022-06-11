@@ -15,7 +15,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: npm run d
+        run: npm ci
 
       - name: Unit Tests
         run: npm run test
