@@ -4,7 +4,7 @@
 // Normally there isn't a need to modify it
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { FeatureFlagsReduxUI } from '../feature-flags.config';
+import { FeatureFlagsUI } from 'feature-flags';
 import { useGetVersion } from '../js/getVersion';
 
 const Version = (/* props */): ReactElement => {
@@ -67,7 +67,7 @@ const Version = (/* props */): ReactElement => {
           <h1>Feature flags</h1>
           <p>The current status of feature flags:</p>
           {/* EXAMPLE: List feature flags (read only) */}
-          <FeatureFlagsReduxUI readonly />
+          <FeatureFlagsUI readonly />
         </Col>
       </Row>
     </>

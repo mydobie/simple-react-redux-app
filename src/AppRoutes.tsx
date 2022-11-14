@@ -2,7 +2,7 @@
 
 import React, { ReactElement } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { FeatureFlagsReduxUI } from './feature-flags.config';
+import { FeatureFlagsUI } from 'feature-flags';
 import { isProd } from './js/whichEnv';
 
 import ROUTES from './AppRouteNames';
@@ -24,7 +24,7 @@ const AppRoutes = (): ReactElement => (
       {/* EXAMPLE: Use which env methods to determine what is displayed */}
       {!isProd() ? (
         // EXAMPLE: Feature flag UI
-        <Route path={ROUTES.FEATURE_FLAGS} element={<FeatureFlagsReduxUI />} />
+        <Route path={ROUTES.FEATURE_FLAGS} element={<FeatureFlagsUI />} />
       ) : null}
 
       {/* EXAMPLE: Route to 404 page

@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* This tells the application to load into the html object with an id of "root"
 NOTE: There normally isn't a reason to change this file
 */
 
 import React, { ReactElement } from 'react';
+import { createRoot } from 'react-dom/client';
 import { persistStore } from 'redux-persist';
-import ReactDOM from 'react-dom';
+import { FeatureFlagProvider } from 'feature-flags';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
@@ -38,4 +40,11 @@ if (!useRedux) {
   }
 }
 
-ReactDOM.render(RenderApp, document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+root.render(
+  <React.StrictMode>
+    <FeatureFlagProvider>{RenderApp}</FeatureFlagProvider>
+  </React.StrictMode>
+);
