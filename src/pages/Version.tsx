@@ -8,13 +8,14 @@ import { FeatureFlagsUI } from 'feature-flags';
 import { useGetVersion } from '../js/getVersion';
 
 const Version = (/* props */): ReactElement => {
-  const [version] = useGetVersion();
+  const [version, isLoading] = useGetVersion();
 
   return (
     <>
       <Row data-testid='versionPageContainer'>
         <Col>
           <h1>Version</h1>
+          {isLoading ? <p>Is loading</p> : null}
           <ul>
             <li>
               <strong>Application Name: </strong>

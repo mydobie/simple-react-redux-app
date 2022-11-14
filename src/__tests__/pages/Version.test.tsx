@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { axe } from 'jest-axe';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import configureStore, { MockStoreEnhanced } from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import fs from 'fs';
@@ -26,15 +26,16 @@ describe('Version tests', () => {
     });
   });
   test('Is accessible', async () => {
-    await act(async () => {
-      const { container } = render(
-        <Provider store={store}>
-          <Version />
-        </Provider>
-      );
-      const results = await axe(container);
-      expect(results).toHaveNoViolations();
-    });
+    const { container } = render(
+      <Provider store={store}>
+        <Version />
+      </Provider>
+    );
+    await waitFor(() =>
+      expect(screen.queryByText('Is loading')).not.toBeInTheDocument()
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 
   test('Displays version and app name from package.json', async () => {
@@ -42,15 +43,18 @@ describe('Version tests', () => {
     const packageJson = JSON.parse(packageData.toString());
     const { version, name } = packageJson;
 
-    await act(async () => {
-      render(
-        <Provider store={store}>
-          <Version />
-        </Provider>
-      );
-      expect(screen.getByText(name)).toBeInTheDocument();
-      expect(screen.getByText(version)).toBeInTheDocument();
-      expect(screen.getByText('foo')).toBeInTheDocument();
-    });
+    render(
+      <Provider store={store}>
+        <Version />
+      </Provider>
+    );
+
+    await waitFor(() => expect(screen.getByText('5.1.3')).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.queryByText('Is loading')).not.toBeInTheDocument()
+    );
+    expect(screen.getByText(name)).toBeInTheDocument();
+    expect(screen.getByText(version)).toBeInTheDocument();
+    expect(screen.getByText('foo')).toBeInTheDocument();
   });
 });
