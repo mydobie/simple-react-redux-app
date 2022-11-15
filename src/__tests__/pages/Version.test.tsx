@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable no-console */
 /* eslint-disable react/react-in-jsx-scope */
 import { axe } from 'jest-axe';
 import { render, screen, waitFor } from '@testing-library/react';
@@ -6,11 +8,24 @@ import { Provider } from 'react-redux';
 import fs from 'fs';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Version from '../../pages/Version';
 
 const mockStore = configureStore([]);
+
 let mock: MockAdapter;
+const queryClient = new QueryClient({
+  logger: {
+    log: console.log,
+    warn: console.warn,
+    error: () => {}, // Prevents networking error from logging to console.
+  },
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 describe('Version tests', () => {
   let store: MockStoreEnhanced<unknown, unknown>;
@@ -27,9 +42,11 @@ describe('Version tests', () => {
   });
   test('Is accessible', async () => {
     const { container } = render(
-      <Provider store={store}>
-        <Version />
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <Version />
+        </Provider>
+      </QueryClientProvider>
     );
     await waitFor(() =>
       expect(screen.queryByText('Is loading')).not.toBeInTheDocument()
@@ -44,9 +61,11 @@ describe('Version tests', () => {
     const { version, name } = packageJson;
 
     render(
-      <Provider store={store}>
-        <Version />
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <Version />
+        </Provider>
+      </QueryClientProvider>
     );
 
     await waitFor(() => expect(screen.getByText('5.1.3')).toBeInTheDocument());
