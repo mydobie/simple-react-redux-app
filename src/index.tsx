@@ -45,6 +45,10 @@ const root = createRoot(container!);
 
 root.render(
   <React.StrictMode>
-    <FeatureFlagProvider>{RenderApp}</FeatureFlagProvider>
+    <FeatureFlagProvider
+      persist={process.env.REACT_APP_FEATURE_FLAGS_PERSIST === 'true'}
+    >
+      {RenderApp}
+    </FeatureFlagProvider>
   </React.StrictMode>
 );
