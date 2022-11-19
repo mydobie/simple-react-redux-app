@@ -48,6 +48,6 @@ describe('Component tests', () => {
         <SAMPLE_PAGE />
       </Provider>
     );
-    expect(screen.getByTestId('pageContent')).toBeInTheDocument();
+    expect(screen.getByText('Sample Page')).toBeInTheDocument();
   });
 });

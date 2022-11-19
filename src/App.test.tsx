@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import AppRoutes from '../AppRoutes';
-import App from '../App';
+import AppRoutes from './AppRoutes';
+import App from './App';
 
 const mockStore = configureStore([]);
 let mock: MockAdapter;
