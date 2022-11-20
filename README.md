@@ -2,8 +2,6 @@
 
 This file contains boilerplate text for the start of a README.
 
-Directions on how create a new app using the files in this project are located in [GETTING_STARTED/README.md](GETTING_STARTED/README.md) file.
-
 ---
 
 ## Description:
@@ -17,7 +15,7 @@ CHANGE ME => [See app in action]()
 At the root of the project run the following commands in a terminal to verify you can perform all the development tasks:
 
 1.  Verify node is installed => `node -v`. Ensure that it is version listed in the `engines` section of the `package.json` file.
-1.  Install dependencies => `npm i`
+1.  Install dependencies => `npm run d`
 1.  Verify you can check for lint errors => `npm run lint`
 1.  Verify you can run the tests => `npm run test`
 1.  Verify you can check for security advisories => `npm run npmAudit`
@@ -43,7 +41,7 @@ Alternatively you can choose to develop this application inside a Docker contain
 
 ## Install dependencies
 
-After checking out the project, run `npm i` in a terminal at the root of the project to install dependencies.
+After checking out the project, run `npm run d` in a terminal at the root of the project to install dependencies.
 
 After installing dependencies, you can check to see what dependencies are out of date by running `npm outdated` in a terminal at the root of the project.
 
@@ -65,11 +63,9 @@ If you need to change the port the application is running on, then change the `P
 
 ### Run tests
 
-To run the tests, run `npm run test` in a terminal the root of the project. This will run all of the tests in the `src/__tests__` directory.
+To run the tests, run `npm run test` in a terminal the root of the project.
 
 After running tests, you can check the coverage reports by opening `coverage/index.html` in a browser or by running `npm run checkCoverage` in a terminal.
-
-If you prefer, you can have the testing run in "watch" mode by running `npm run test:watch` in a terminal at the root of the project. The tests will be rerun as you make edits. Note coverage reports will not be updated while in watch mode.
 
 Test are run in [Jest](https://jestjs.io/docs/en/expect), use [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) to inspect components, and [jest-axe](https://github.com/nickcolley/jest-axe) to check for accessibility.
 
@@ -84,8 +80,6 @@ NOTE: Generally snapshots are not recommended, but are a good start when more de
 You can check the linting status of your files by running `npm run lint` in a terminal at the root of the project.
 
 To fix known issue, you can run `npm run lint:fix`. NOTE: You may need to run this command multiple times until you get a successful run in order to fix all issues.
-
-If you want linting issues fixed as you save files, run `npm run lint:watch` in a terminal at the root of the project.
 
 More information on fixing linting errors is available at: [esLint](https://eslint.org/docs/rules/) | [Prettier](https://prettier.io/docs/en/install.html) |[airbnb JS style guide](https://github.com/airbnb/javascript)
 
@@ -147,4 +141,5 @@ When a pull request is merged into the `main` branch, the following is automatic
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ---
+
 Based on template version 3.1.0

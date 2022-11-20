@@ -10,7 +10,7 @@ import MockAdapter from 'axios-mock-adapter';
 
 import { sampleAPI } from '../../js/axios.config';
 import { resetStore } from '../../redux/reducers/REDUCER_TEMPLATE';
-import SAMPLE_COMPONENT from '../../components/SAMPLE_COMPONENT';
+import SAMPLE_COMPONENT from '../SAMPLE_COMPONENT';
 
 const mockStore = configureStore([]);
 let mock: MockAdapter;
@@ -49,6 +49,6 @@ describe('Component tests', () => {
         <SAMPLE_COMPONENT />
       </Provider>
     );
-    expect(screen.getByTestId('componentContent')).toBeInTheDocument();
+    expect(screen.getByText('Sample Component Content')).toBeInTheDocument();
   });
 });

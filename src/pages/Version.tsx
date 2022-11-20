@@ -4,17 +4,18 @@
 // Normally there isn't a need to modify it
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { FeatureFlagsReduxUI } from '../feature-flags.config';
+import { FeatureFlagsUI } from 'feature-flags';
 import { useGetVersion } from '../js/getVersion';
 
 const Version = (/* props */): ReactElement => {
-  const [version] = useGetVersion();
+  const [version, isLoading] = useGetVersion();
 
   return (
     <>
       <Row data-testid='versionPageContainer'>
         <Col>
           <h1>Version</h1>
+          {isLoading ? <p>Is loading</p> : null}
           <ul>
             <li>
               <strong>Application Name: </strong>
@@ -46,13 +47,13 @@ const Version = (/* props */): ReactElement => {
               <strong>React: </strong>
               {React.version}
             </li>
-            {version.bootstrap ? (
+            {version?.bootstrap ? (
               <li>
                 <strong>Bootstrap: </strong>
                 {version.bootstrap}
               </li>
             ) : null}
-            {version.featureFlags ? (
+            {version?.featureFlags ? (
               <li>
                 <strong>Feature Flags: </strong>
                 {version.featureFlags}
@@ -67,7 +68,7 @@ const Version = (/* props */): ReactElement => {
           <h1>Feature flags</h1>
           <p>The current status of feature flags:</p>
           {/* EXAMPLE: List feature flags (read only) */}
-          <FeatureFlagsReduxUI readonly />
+          <FeatureFlagsUI readonly />
         </Col>
       </Row>
     </>

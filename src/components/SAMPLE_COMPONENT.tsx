@@ -1,29 +1,13 @@
 import React, { ReactElement } from 'react';
-import {} from 'react-bootstrap';
-//import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
-// *** Import selectors ***
-
-// *** Import reducers ***
-
-// *** Import components ***
-
-// ** Main component type */
 // eslint-disable-next-line @typescript-eslint/ban-types
-type SampleComponentType = {};
+type SampleComponentProps = {};
 
-// *** Main component ***
 // eslint-disable-next-line no-empty-pattern
-const SampleComponent = ({}: SampleComponentType): ReactElement => {
+const SampleComponent = ({}: SampleComponentProps): ReactElement => {
   // const dispatch = useDispatch();
 
-  // *** Selectors ***
-  // const items: SampleItemType[] = useGetItems();
-
-  // *** State (useState) ***
-  //  const [myMessage, setMyMessage] = React.useState('');
-
-  // *** On component load ***
   // eslint-disable-next-line arrow-body-style
   React.useEffect(() => {
     // *** items run on component mount ***
@@ -33,14 +17,7 @@ const SampleComponent = ({}: SampleComponentType): ReactElement => {
     };
   }, []);
 
-  // *** Return ***
-  return (
-    <div data-testid='componentContent'>
-      {/* Component content */}
-
-      {/* End component content */}
-    </div>
-  );
+  return <>Sample Component Content</>;
 };
 
 export default SampleComponent;

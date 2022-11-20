@@ -17,6 +17,7 @@ const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
 
 export const ajaxFinally = async (
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   func: () => void = () => {},
   timeout = 3000,
   envVariable = 'REACT_APP_USE_MOCKS'
