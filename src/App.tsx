@@ -4,21 +4,15 @@ import React, { ReactElement } from 'react';
 import { BrowserRouter, HashRouter } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
 import { Container, Card } from 'react-bootstrap';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: { retry: false },
-  },
-});
-
 import SkipMenu from 'skip-menu-react';
+
+const queryClient = new QueryClient();
+
 const Router =
   process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
 
-// // START FEATURE FLAGS
-import { useSetFeatureFlags } from 'feature-flags';
+import { FeatureFlagged, useSetFeatureFlags } from 'feature-flags';
 import { featureFlagArray } from './feature-flags.config';
-// // END FEATURE FLAGS
 
 import AppNavBar from './AppNavBar';
 import AppRoutes from './AppRoutes';
@@ -30,7 +24,7 @@ const Header = (): ReactElement => (
   <header>
     <Card bg='dark' text='white'>
       <Card.Body>
-        <Card.Title>Sample redux application</Card.Title>
+        <Card.Title>Sample react application</Card.Title>
       </Card.Body>
     </Card>
   </header>
@@ -38,13 +32,32 @@ const Header = (): ReactElement => (
 
 const Footer = (): ReactElement => (
   <footer>
-    <Card bg='light' style={{ marginTop: '20px' }}></Card>
+    <Card bg='light' style={{ marginTop: '20px' }}>
+      {/* EXAMPLE: Show/Hide based on feature flag */}
+      <FeatureFlagged feature={'COLORS'}>
+        <Card.Body>
+          <strong>Colors:</strong> Red, Orange, Yellow, Green, Blue, Violet
+        </Card.Body>
+      </FeatureFlagged>
+    </Card>
   </footer>
 );
+type UserContextType = {
+  user: string;
+  setUser: (userName: string) => void;
+};
+
+export const UserContext = React.createContext<UserContextType>({
+  user: '',
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setUser: () => {},
+});
 
 const App = (): ReactElement => {
   const basename = '';
+  const [user, setUser] = React.useState('superUser');
   const setFeatureFlags = useSetFeatureFlags();
+
   React.useEffect(() => {
     // START FEATURE FLAGS
     setFeatureFlags(featureFlagArray);
@@ -62,7 +75,9 @@ const App = (): ReactElement => {
           <AppNavBar />
           <Container>
             <main>
-              <AppRoutes />
+              <UserContext.Provider value={{ user, setUser }}>
+                <AppRoutes />
+              </UserContext.Provider>
             </main>
           </Container>
           <Footer />
